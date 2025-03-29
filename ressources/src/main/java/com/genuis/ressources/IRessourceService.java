@@ -14,4 +14,6 @@ public interface IRessourceService {
     void removeRessource(Long idRessource);
 
     Ressource modifyRessource(Ressource ressource);
+
+    List<Ressource> retrieveAllRessourcesByCategories(Long idCategorie);
 }

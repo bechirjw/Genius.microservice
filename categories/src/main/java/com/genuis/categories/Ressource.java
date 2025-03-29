@@ -1,21 +1,18 @@
-package com.genuis.ressources;
+package com.genuis.categories;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
-@Entity
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Ressource {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRessource;
 
     private String titre; // Mappé automatiquement à la colonne "titre"
@@ -31,5 +28,4 @@ public class Ressource {
     private StatutRessource statut;
 
 
-   private Long idCategorie;
 }

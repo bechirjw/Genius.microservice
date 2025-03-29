@@ -58,4 +58,10 @@ public class RessourceRestController {
         Ressource updatedRessource = ressourceService.modifyRessource(ressource);
         return ResponseEntity.ok(updatedRessource);
     }
+
+    @Operation(description = "Récupérer toutes les ressources with categorie")
+    @GetMapping("/categorie/{categorie-id}")
+    public ResponseEntity<List<Ressource>> getRessources(@PathVariable("categorie-id") Long idCategorie) {
+        return ResponseEntity.ok(ressourceService.retrieveAllRessourcesByCategories(idCategorie));
+    }
 }

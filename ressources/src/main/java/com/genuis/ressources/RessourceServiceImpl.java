@@ -38,4 +38,9 @@ public class RessourceServiceImpl implements IRessourceService {
     public Ressource modifyRessource(Ressource ressource) {
         return ressourceRepository.save(ressource);
     }
+    @Override
+    public List<Ressource> retrieveAllRessourcesByCategories(Long idCategorie){
+        return ressourceRepository.findAllByIdCategorie(idCategorie);
+    }
+
 }
