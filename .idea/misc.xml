@@ -8,6 +8,8 @@
         <option value="$PROJECT_DIR$/discovery/pom.xml" />
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/post/pom.xml" />
+        <option value="$PROJECT_DIR$/comment/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
