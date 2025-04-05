@@ -4,6 +4,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka  # URL du service Eureka
+    wait-time-in-ms-when-sync-empty: 5000
 
 server:
   port: 5020  # Port sur lequel le serveur Spring Boot écoute
@@ -24,7 +25,11 @@ spring:
       ddl-auto: update  # Stratégie de génération du schéma de la base de données (ici, mise à jour à chaque démarrage)
     database: mysql  # Type de base de données
     database-platform: org.hibernate.dialect.MySQLDialect  # Dialecte Hibernate pour MySQL
-
+  servlet:
+    multipart:
+      max-file-size: 150MB  # Taille maximale d'un fichier
+      max-request-size: 200MB  # Taille maximale d'une requête entière
 application:
   config:
     resource-url: http://localhost:5010/ressources  # URL de l'application Ressources
+

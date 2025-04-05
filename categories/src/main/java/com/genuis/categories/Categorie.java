@@ -1,9 +1,6 @@
 package com.genuis.categories;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,13 +18,14 @@ import java.time.LocalDateTime;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long idCategorie;
-
+        private Integer likes =0;
         private String nomCategorie; // Nom de la catégorieg
 
         private String domaine; // Domaine associé (ex: Informatique, Science...)
 
         private String description; // Description détaillée de la catégorie
         private LocalDateTime dateCreation  = LocalDateTime.now();
-
+    @Lob
+    private byte[] image;
 
 }

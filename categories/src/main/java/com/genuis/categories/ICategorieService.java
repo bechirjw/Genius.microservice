@@ -2,6 +2,9 @@ package com.genuis.categories;
 
 
 
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 
 public interface ICategorieService {
@@ -16,4 +19,9 @@ public interface ICategorieService {
     Categorie modifyCategorie(Categorie categorie);
 
     FullResources retrieveCategoriewithresources(Long idCategorie);
+
+    Categorie addCategorieWithImage(String nomCategorie, MultipartFile image) throws IOException;
+    CategorieDTO retrieveCategorieWithImage(Long idCategorie);
+
+    Categorie updateLikes(Long idCategorie, Integer likes);
 }

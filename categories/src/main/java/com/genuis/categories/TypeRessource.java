@@ -4,7 +4,7 @@ package com.genuis.categories;
 
 public enum TypeRessource {
     PDF,
-    VIDEO,
+    IMAGE,
     LIEN,
     ARTICLE,
     PRESENTATION

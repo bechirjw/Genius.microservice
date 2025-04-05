@@ -5,6 +5,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka  # URL du service Eureka
 
+    wait-time-in-ms-when-sync-empty: 5000
 server:
   port: 5010  # Port sur lequel le serveur Spring Boot écoute
 
@@ -13,6 +14,10 @@ spring:
     name: ressources  # Nom de l'application Spring Boot
   config:
     import: optional:configserver:http://localhost:8888  # Importation optionnelle de la configuration depuis le serveur de configuration
+  servlet:
+    multipart:
+      max-file-size: 150MB  # Taille maximale d'un fichier
+      max-request-size: 200MB  # Taille maximale d'une requête entière
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver  # Classe du driver JDBC pour MySQL
@@ -21,6 +26,6 @@ spring:
     password: password  # Mot de passe pour la base de données
   jpa:
     hibernate:
-      ddl-auto: update  # Stratégie de génération du schéma de la base de données (ici, création à chaque démarrage)
+      ddl-auto: create  # Stratégie de génération du schéma de la base de données (ici, création à chaque démarrage)
     database: mysql  # Type de base de données
     database-platform: org.hibernate.dialect.MySQLDialect  # Dialecte Hibernate pour MySQL
