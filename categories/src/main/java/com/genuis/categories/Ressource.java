@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Getter
@@ -19,6 +20,10 @@ public class Ressource {
 
     private String description; // Mappé automatiquement à la colonne "description"
 
+    private Long prix; // Le prix de la ressource
+    private  String text;// Le texte de la ressource
+    private String lien; // Le lien de la ressource
+
     @Enumerated(EnumType.STRING)
     private TypeRessource type; // Mappé automatiquement à la colonne "type"
 
@@ -27,5 +32,10 @@ public class Ressource {
     @Enumerated(EnumType.STRING)
     private StatutRessource statut;
 
+    @Lob
+    private byte[] image; // Stocke l'image (avec annotation @Lob)
+
+    @OneToMany(mappedBy = "ressource", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Fichier> fichiers; // Liste de fichiers associés à cette ressource
 
 }

@@ -1,11 +1,12 @@
 package com.genuis.ressources;
 
-import com.genuis.ressources.Ressource;
+
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IRessourceService {
-    List<Ressource> retrieveAllRessources();
+
 
     Ressource retrieveRessource(Long idRessource);
 
@@ -14,6 +15,9 @@ public interface IRessourceService {
     void removeRessource(Long idRessource);
 
     Ressource modifyRessource(Ressource ressource);
+    List<Ressource> getAllRessources();
 
     List<Ressource> retrieveAllRessourcesByCategories(Long idCategorie);
+
+    Optional<Ressource>  getRessourceById(Long id);
 }

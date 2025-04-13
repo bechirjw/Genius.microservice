@@ -191,5 +191,10 @@ private CategorieDTO convertToDto(Categorie categorie) {
             return ResponseEntity.internalServerError().build();
         }
     }
-
+    // Récupérer toutes les ressources avec une catégorie spécifique
+    @Operation(description = "Récupérer toutes les ressources avec catégorie")
+    @GetMapping("/{categorie-id}")
+    public ResponseEntity<FullResources> getRessourcesByCategorie(@PathVariable("categorie-id") Long idCategorie) {
+        return ResponseEntity.ok(categorieService.retrieveCategoriewithresources(idCategorie));
+    }
 }

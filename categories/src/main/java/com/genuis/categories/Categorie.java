@@ -18,7 +18,11 @@ import java.time.LocalDateTime;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long idCategorie;
+       // private long userid;
+
         private Integer likes =0;
+
+
         private String nomCategorie; // Nom de la catégorieg
 
         private String domaine; // Domaine associé (ex: Informatique, Science...)
