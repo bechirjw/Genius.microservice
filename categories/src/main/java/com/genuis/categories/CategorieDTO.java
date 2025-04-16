@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Setter
 public class CategorieDTO {
     private Long idCategorie;
+
     private String nomCategorie;
     private String domaine;
     private String description;

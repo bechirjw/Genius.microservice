@@ -19,6 +19,7 @@ public class Ressource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long idRessource;
 
     private String titre; // Le titre de la ressource

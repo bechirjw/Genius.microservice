@@ -29,7 +29,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/ressources")
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+//@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 
 public class RessourceRestController {
     private static final Logger logger = LoggerFactory.getLogger(RessourceRestController.class);
@@ -42,6 +42,7 @@ public class RessourceRestController {
             @RequestParam("titre") String titre,
             @RequestParam("description") String description,
             @RequestParam("status") StatutRessource status,
+            @RequestParam("type") TypeRessource type,
             @RequestParam(value = "prix", required = false) Long prix,
             @RequestParam(value = "image", required = false) MultipartFile image,
             @RequestParam(value = "files", required = false) MultipartFile[] files,
@@ -50,9 +51,11 @@ public class RessourceRestController {
     ) {
         try {
             Ressource ressource = new Ressource();
+
             ressource.setTitre(titre);
             ressource.setDescription(description);
             ressource.setIdCategorie(idCategorie);
+            ressource.setType(type);
 
             // Définir le statut
             try {
@@ -208,6 +211,7 @@ public class RessourceRestController {
 
         // Créer le DTO de réponse
         com.genuis.ressources.RessourceResponseDTO dto = new com.genuis.ressources.RessourceResponseDTO();
+        dto.setIdCategorie(ressource.getIdCategorie());
         dto.setId(ressource.getIdRessource());
         dto.setTitre(ressource.getTitre());
         dto.setDescription(ressource.getDescription());
@@ -265,7 +269,7 @@ public class RessourceRestController {
 
     // Supprimer une ressource par son ID
     @Operation(description = "Supprimer une ressource par son ID")
-    @DeleteMapping("/remove-ressources/{ressource-id}")
+    @DeleteMapping("/remove-ressource/{ressource-id}")
     public ResponseEntity<Void> removeRessource(@PathVariable("ressource-id") Long idRessource) {
         ressourceService.removeRessource(idRessource);
         return ResponseEntity.noContent().build();

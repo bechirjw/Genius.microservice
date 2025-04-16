@@ -20,6 +20,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RessourceResponseDTO {
+    private long idCategorie;
+
     private Long id;
     private String titre;
     private String description;

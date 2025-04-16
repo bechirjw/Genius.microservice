@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long idCategorie;
-       // private long userid;
+
 
         private Integer likes =0;
 
