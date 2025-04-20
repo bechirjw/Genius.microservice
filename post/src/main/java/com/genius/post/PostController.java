@@ -26,8 +26,8 @@ import java.util.List;
 public class PostController {
     @Autowired
     private PostService postService;
-    private static final String ACCOUNT_SID = "AC3e8ff4c6ec792ca180ab9523cb41234d";
-    private static final String AUTH_TOKEN = "2f4bbbbe65e865340606a0c7535c5dd7";
+   // private static final String ACCOUNT_SID = "AC3e8ff4c6ec792ca180ab9523cb41234d";
+    //private static final String AUTH_TOKEN = "2f4bbbbe65e865340606a0c7535c5dd7";
     private static final String FROM_PHONE = "+17622142590";
     private static final String TO_PHONE = "+21658978570";
 
@@ -91,7 +91,7 @@ public class PostController {
 
         postService.removePost(postId);
 
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    //    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message.creator(
                 new PhoneNumber(TO_PHONE),
                 new PhoneNumber(FROM_PHONE),
