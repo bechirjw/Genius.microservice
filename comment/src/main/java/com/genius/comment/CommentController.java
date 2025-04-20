@@ -19,10 +19,10 @@ import java.util.List;
 public class CommentController {
     @Autowired
     private CommentService commentService;
-   // private static final String ACCOUNT_SID = "AC3e8ff4c6ec792ca180ab9523cb41234d";
-   // private static final String AUTH_TOKEN = "2f4bbbbe65e865340606a0c7535c5dd7";
-    private static final String FROM_PHONE = "+17622142590";
-    private static final String TO_PHONE = "+21658978570";
+    private static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
+    private static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
+    private static final String FROM_PHONE = System.getenv("TWILIO_FROM_PHONE");
+    private static final String TO_PHONE = System.getenv("TWILIO_TO_PHONE");
 
     // Récupérer tous les commentaires
     @GetMapping
@@ -48,7 +48,7 @@ public class CommentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeComment(@PathVariable Long commentId) {
         commentService.removeComment(commentId);
-       // Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message.creator(
                 new PhoneNumber(TO_PHONE),
                 new PhoneNumber(FROM_PHONE),
