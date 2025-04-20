@@ -1,10 +1,10 @@
-package com.genius.post;
+package com.genius.ai;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PostApplicationTests {
+class AiApplicationTests {
 
     @Test
     void contextLoads() {

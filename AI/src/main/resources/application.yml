@@ -1,0 +1,29 @@
+server:
+  port: 8085  # Le port du microservice AI
+
+spring:
+  application:
+    name: ai-service
+
+  # (Optionnel) Configuration d'un client REST si tu utilises WebClient
+  cloud:
+    discovery:
+      enabled: false
+
+# Config pour les logs
+logging:
+  level:
+    root: INFO
+    com.yourcompany.aiservice: DEBUG
+
+# Pour activer les CORS si le frontend communique avec ce service
+cors:
+  allowed-origins: "*"
+  allowed-methods: "GET,POST,PUT,DELETE"
+
+# Pour activer Actuator si tu veux monitorer le service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
