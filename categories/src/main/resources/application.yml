@@ -33,3 +33,6 @@ application:
   config:
     resource-url: http://localhost:5010/ressources  # URL de l'application Ressources
 
+openai:
+  api:
+    key: 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

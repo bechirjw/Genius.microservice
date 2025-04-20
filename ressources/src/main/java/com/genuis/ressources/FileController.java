@@ -4,6 +4,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.util.StringUtils;
 
 import java.net.MalformedURLException;
 import java.nio.file.Path;
@@ -25,16 +26,39 @@ public class FileController {
                 return ResponseEntity.notFound().build();
             }
 
-            // Retirez l'en-tête ACCESS_CONTROL_ALLOW_ORIGIN manuel
-            // La configuration CORS sera gérée globalement ou par l'annotation
+            // Détermine le type MIME en fonction de l'extension
+            String contentType = determineContentType(filename);
+
             return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_PDF)
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
+                    .contentType(MediaType.parseMediaType(contentType))
+                    .header(HttpHeaders.CONTENT_DISPOSITION, getContentDisposition(filename, contentType))
                     .body(resource);
         } catch (MalformedURLException e) {
             return ResponseEntity.badRequest().build();
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    private String determineContentType(String filename) {
+        String extension = StringUtils.getFilenameExtension(filename).toLowerCase();
+
+        return switch (extension) {
+            case "pdf" -> MediaType.APPLICATION_PDF_VALUE;
+            case "jpg", "jpeg" -> "image/jpeg";
+            case "png" -> "image/png";
+            case "gif" -> "image/gif";
+            case "svg" -> "image/svg+xml";
+            case "webp" -> "image/webp";
+            default -> MediaType.APPLICATION_OCTET_STREAM_VALUE;
+        };
+    }
+
+    private String getContentDisposition(String filename, String contentType) {
+        if (contentType.startsWith("image/")) {
+            return "inline; filename=\"" + filename + "\"";
+        } else {
+            return "attachment; filename=\"" + filename + "\"";
         }
     }
 }

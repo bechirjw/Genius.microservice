@@ -17,7 +17,7 @@ public class FullResources {
     private String nomCategorie; // Nom de la catégorieg
 
     private String domaine; // Domaine associé (ex: Informatique, Science...)
-
+    private String type;
     private String description; // Description détaillée de la catégorie
     private LocalDateTime dateCreation  = LocalDateTime.now();
 

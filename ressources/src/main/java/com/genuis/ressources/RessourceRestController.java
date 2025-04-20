@@ -43,6 +43,7 @@ public class RessourceRestController {
             @RequestParam("description") String description,
             @RequestParam("status") StatutRessource status,
             @RequestParam("type") TypeRessource type,
+
             @RequestParam(value = "prix", required = false) Long prix,
             @RequestParam(value = "image", required = false) MultipartFile image,
             @RequestParam(value = "files", required = false) MultipartFile[] files,
@@ -56,6 +57,7 @@ public class RessourceRestController {
             ressource.setDescription(description);
             ressource.setIdCategorie(idCategorie);
             ressource.setType(type);
+
 
             // Définir le statut
             try {
@@ -120,6 +122,8 @@ public class RessourceRestController {
             @RequestParam("titre") String titre,
             @RequestParam("description") String description,
             @RequestParam("status") StatutRessource status,
+            @RequestParam("type") TypeRessource type,
+
             @RequestParam(value = "prix", required = false) Long prix,
             @RequestParam(value = "image", required = false) MultipartFile image,
             @RequestParam(value = "files", required = false) MultipartFile[] files,
@@ -135,10 +139,12 @@ public class RessourceRestController {
 
             // Mettre à jour les champs
             ressource.setTitre(titre);
+            ressource.setType(type);
             ressource.setDescription(description);
             ressource.setStatut(status);
             ressource.setText(text);
             ressource.setLien(lien);
+
             if (prix != null) {
                 ressource.setPrix(prix);
             }
@@ -219,6 +225,7 @@ public class RessourceRestController {
         dto.setPrix(ressource.getPrix());
         dto.setText(ressource.getText());
         dto.setLien(ressource.getLien());
+
         dto.setType(ressource.getType() != null ? ressource.getType().name() : null);
         dto.setDateAjout(ressource.getDateAjout());
         dto.setImageBase64(imageBase64);
@@ -253,6 +260,7 @@ public class RessourceRestController {
             dto.setPrix(ressource.getPrix());
             dto.setText(ressource.getText());
             dto.setLien(ressource.getLien());
+
             dto.setType(ressource.getType() != null ? ressource.getType().name() : null);
             dto.setDateAjout(ressource.getDateAjout());
             dto.setImageBase64(imageBase64);
@@ -281,5 +289,44 @@ public class RessourceRestController {
     @GetMapping("/categorie/{categorie-id}")
     public ResponseEntity<List<Ressource>> getRessourcesByCategorie(@PathVariable("categorie-id") Long idCategorie) {
         return ResponseEntity.ok(ressourceService.retrieveAllRessourcesByCategories(idCategorie));
+    }
+
+    // Dans RessourceRestController.java
+
+    @Operation(description = "Générer une mindmap à partir d'un PDF existant")
+    @GetMapping("/{idRessource}/generate-mindmap")
+    public ResponseEntity<?> generateMindmapFromPdf(
+            @PathVariable("idRessource") Long idRessource,
+            @RequestParam(value = "fileIndex", defaultValue = "0") int fileIndex) {
+
+        try {
+            // 1. Récupérer la ressource
+            Optional<Ressource> optionalRessource = ressourceService.getRessourceById(idRessource);
+            if (optionalRessource.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            Ressource ressource = optionalRessource.get();
+            List<Fichier> fichiers = ressource.getFichiers();
+
+            // 2. Vérifier qu'il y a des fichiers PDF
+            if (fichiers == null || fichiers.isEmpty()) {
+                return ResponseEntity.badRequest().body("Aucun fichier PDF associé à cette ressource");
+            }
+
+            // 3. Récupérer le chemin du PDF (par index ou en cherchant le 1er PDF)
+            Fichier pdfFichier = fichiers.get(fileIndex); // Ou parcourir pour trouver un PDF
+            String pdfPath = pdfFichier.getFilePath();
+
+            // 4. Appeler le script Python
+            String jsonMindmap = PythonRunner.runMindmapGenerator(pdfPath);
+
+            return ResponseEntity.ok(jsonMindmap);
+
+        } catch (Exception e) {
+            logger.error("Erreur lors de la génération de la mindmap : {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError()
+                    .body("Erreur serveur : " + e.getMessage());
+        }
     }
 }

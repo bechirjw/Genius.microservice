@@ -4,9 +4,7 @@ package com.genuis.ressources;
 import com.genuis.ressources.FichierDTO;
 import com.genuis.ressources.StatutRessource;
 import com.genuis.ressources.StatutRessourceConverter;
-import jakarta.persistence.Convert;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +28,8 @@ public class RessourceResponseDTO {
     @Enumerated(EnumType.STRING)
     private StatutRessource statut;
     private Long prix;
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String text;
     private String lien;
     private String type;
