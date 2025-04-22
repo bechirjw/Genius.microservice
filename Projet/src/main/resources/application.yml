@@ -13,6 +13,11 @@ spring:
     name: projets
   config:
     import: optional:configserver:http://localhost:8888
+  mvc:
+  format:
+    date:
+      yyyy-MM-dd date-time: yyyy-MM-dd'T'HH:mm:ss
+
 
 
   datasource:

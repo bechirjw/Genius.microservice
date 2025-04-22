@@ -14,6 +14,9 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/collaboration")
+
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+
 public class CollaborationRestController {
 
     @Autowired
@@ -55,4 +58,15 @@ public class CollaborationRestController {
     ) {
         return ResponseEntity.ok(collaborationService.findAllCollaborationsByProjet(projetId));
     }
+//    @PutMapping("/{id}/accepter")
+//    public ResponseEntity<Collaboration> accepterCollaboration(@PathVariable Long id) {
+//        Collaboration collab = collaborationService.accepterCollaboration(id);
+//        if (collab == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(collab);
+//    }
+@PutMapping("/collaborations/{id}/accepter") public ResponseEntity<Collaboration> accepterCollaboration(@PathVariable Long id) { Collaboration updated = collaborationService.accepterCollaboration(id); if (updated != null) { return ResponseEntity.ok(updated); } else { return ResponseEntity.notFound().build(); } }
+
+
 }

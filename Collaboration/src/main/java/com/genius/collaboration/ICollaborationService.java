@@ -9,6 +9,7 @@ public interface ICollaborationService {
     Collaboration addCollaboration(Collaboration c);
     void removeCollaboration(Long collaborationId);
     Collaboration modifyCollaboration(Collaboration collaboration);
+    Collaboration accepterCollaboration(Long id);
 
     List<Collaboration> findAllCollaborationsByProjet(Long projetId);
 }
