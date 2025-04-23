@@ -1,0 +1,16 @@
+com\genius\quizservice\repository\TestRepository.class
+com\genius\quizservice\repository\TestResultRepository.class
+com\genius\quizservice\dto\TestDetailsDTO.class
+com\genius\quizservice\QuizServiceApplication.class
+com\genius\quizservice\dto\QuestionDTO.class
+com\genius\quizservice\dto\SubmitTestDTO.class
+com\genius\quizservice\service\TestService.class
+com\genius\quizservice\dto\TestResultDTO.class
+com\genius\quizservice\dto\testDTO.class
+com\genius\quizservice\repository\QuestionRepository.class
+com\genius\quizservice\entity\Question.class
+com\genius\quizservice\controller\TestController.class
+com\genius\quizservice\entity\TestResult.class
+com\genius\quizservice\dto\QuestionResponse.class
+com\genius\quizservice\entity\Test.class
+com\genius\quizservice\service\TestServiceImpl.class
