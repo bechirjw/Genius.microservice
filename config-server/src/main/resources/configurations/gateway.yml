@@ -2,7 +2,7 @@ eureka:
   client:
     register-with-eureka: false
 server:
-  port: 8222
+  port: 6002
 spring:
   application:
     name: gateway
@@ -12,6 +12,6 @@ spring:
       discovery:
         locator:
           enabled: true
-     # routes:
+      # routes:
 
 

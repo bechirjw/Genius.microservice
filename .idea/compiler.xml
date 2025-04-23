@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
+        <module name="stage-service" />
         <module name="gateway" />
         <module name="discovery" />
       </profile>
@@ -21,6 +22,7 @@
       <module name="demo" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="stage-service" options="-parameters" />
     </option>
   </component>
 </project>
