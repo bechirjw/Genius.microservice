@@ -5,5 +5,3 @@ spring:
   application:
     name: discovery
 
-server:
-  port: 8761

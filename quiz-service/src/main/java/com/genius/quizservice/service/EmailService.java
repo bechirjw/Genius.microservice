@@ -11,7 +11,7 @@ import java.io.IOException;
 @Service
 public class EmailService {
 
-    private static final String API_KEY = "";  // Replace with your SendGrid API key
+    private static final String API_KEY = "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";  // Replace with your SendGrid API key
 
     public void sendEmail(String to, String subject, String body) {
         Email from = new Email("");

@@ -1,7 +1,10 @@
+com\genius\quizservice\service\EmailService.class
+com\genius\quizservice\service\AIQuestionGeneratorService.class
 com\genius\quizservice\repository\TestRepository.class
 com\genius\quizservice\repository\TestResultRepository.class
 com\genius\quizservice\dto\TestDetailsDTO.class
 com\genius\quizservice\QuizServiceApplication.class
+com\genius\quizservice\config\AppConfig.class
 com\genius\quizservice\dto\QuestionDTO.class
 com\genius\quizservice\dto\SubmitTestDTO.class
 com\genius\quizservice\service\TestService.class
