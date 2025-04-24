@@ -44,17 +44,12 @@ public class CommentController {
     //}
 
     // Supprimer un commentaire par ID
-    @DeleteMapping("/{commentId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeComment(@PathVariable Long commentId) {
-        commentService.removeComment(commentId);
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message.creator(
-                new PhoneNumber(TO_PHONE),
-                new PhoneNumber(FROM_PHONE),
-                "Blog deleted: " + commentId
-        ).create();
-    }
+        @DeleteMapping("/{commentId}")
+        @ResponseStatus(HttpStatus.NO_CONTENT)
+        public void removeComment(@PathVariable Long commentId) {
+            commentService.removeComment(commentId);
+
+        }
 
     // Modifier un commentaire existant
     //@PutMapping

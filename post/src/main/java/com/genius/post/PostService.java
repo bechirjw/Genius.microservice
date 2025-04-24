@@ -22,7 +22,8 @@ public class PostService {
         return postRepository.findById(id).orElse(null);
     }
 
-    public Post addPost(Post post) {
+    public Post addPost(Post post,Long userId) {
+        post.setUserId(userId);
         return postRepository.save(post);
     }
 
@@ -34,19 +35,19 @@ public class PostService {
         return postRepository.save(post);
     }*/
     public Post modifyPost(Post newPost, Long userId) {
-        Post existingComment = postRepository.findById(newPost.getId()).orElse(null);
+        Post post = postRepository.findById(newPost.getId()).orElse(null);
 
-        if (existingComment == null) {
+        if (post == null) {
             throw new RuntimeException("Post not found");
         }
 
-        if (!existingComment.getUserId().equals(userId)) {
+        if (!post.getUserId().equals(userId)) {
             throw new RuntimeException("Unauthorized to modify this Post");
         }
 
 
 
-        return postRepository.save(existingComment);
+        return postRepository.save(post);
     }
    /* public void postToFacebook(String message) {
         String accessToken = System.getenv("EAAGkSjCTepQBO6ekix7TsFxAGz3Wn2TRrd6qtCLfQHiITZBV59JC6XsEobSa9YaaCHugKgzNvt7f1qKhxfc32jqZBGb9NtbkE3QA7kEp1e55QcZChTX4ziRCsGGlpT3x60ZCJB3cj38zgnAZAyJgmZB7VuXJ7OYQTyr8qXKNqIvxNIydRDbxlnlgOrueOYOkYZD"); // 🔐 Utilise une variable d'env

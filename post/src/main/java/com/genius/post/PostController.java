@@ -47,12 +47,13 @@ public class PostController {
     }
 
     // Ajouter un post sans utiliser userId dans l'URL
-    @PostMapping()
+    @PostMapping("/{userId}")
     public ResponseEntity<Post> addPost(
+            @PathVariable("userId") Long userId,
+
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("image") MultipartFile image,
-            @RequestParam("userId") Long userId,
             @RequestParam("createdBy") String createdBy) {
         try {
             String imageUrl = saveImage(image);
@@ -62,7 +63,7 @@ public class PostController {
             post.setImageUrl(imageUrl);
             post.setUserId(userId);
             post.setCreatedBy(createdBy);
-            return ResponseEntity.ok(postService.addPost(post));
+            return ResponseEntity.ok(postService.addPost(post,userId));
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body(null);
@@ -103,23 +104,47 @@ public class PostController {
 
 
     // Modifier un post existant
-    @PutMapping("/{id}/user/{userId}")
+  /*  @PutMapping("/{id}/user/{userId}")
     public ResponseEntity<Post> updatePost(@PathVariable Long id, @PathVariable Long userId,@RequestBody Post post) {
         post.setId(id);
 
         return ResponseEntity.ok(postService.modifyPost(post,userId));
     }
-    //facebook
-   /* @PostMapping("/facebook/post")
-    public ResponseEntity<String> postToFacebook(@RequestBody String message) {
+ */
+
+    @PutMapping("/{postId}/user/{userId}")
+    public ResponseEntity<Post> updatePost(
+            @PathVariable Long userId,
+            @PathVariable Long postId,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestParam(value = "image", required = false) MultipartFile image)
+           {
+
         try {
-            postService.postToFacebook(message);
-            return ResponseEntity.ok("Message publié avec succès sur Facebook !");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Erreur : " + e.getMessage());
+            Post post = postService.retrievePost(postId);
+            if (post == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            post.setTitle(title);
+            post.setContent(content);
+            post.setCreatedAt(LocalDateTime.now());
+            post.setUserId(userId);
+
+            if (image != null && !image.isEmpty()) {
+                String imageUrl = saveImage(image);
+                post.setImageUrl(imageUrl);
+            }
+
+            Post updatedPost = postService.addPost(post, userId);
+            return ResponseEntity.ok(updatedPost);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(null);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
         }
-    }*/
-
-
+    }
 }
