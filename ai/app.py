@@ -3,7 +3,7 @@ import openai
 import re
 
 app = Flask(__name__)
-openai.api_key = "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"
+openai.api_key = ""
 
 @app.route("/generate-questions", methods=["POST"])
 def generate_questions():
