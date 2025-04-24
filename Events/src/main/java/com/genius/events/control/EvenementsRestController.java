@@ -4,6 +4,9 @@ import com.genius.events.entity.Evenements;
 import com.genius.events.entity.StatutEvenement;
 import com.genius.events.repository.ParticipationsRepository;
 import com.genius.events.service.IEvenementsService;
+
+import com.genius.events.service.PdfExportService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -32,7 +35,7 @@ public class EvenementsRestController {
 
     IEvenementsService evenementsService;
     private final ParticipationsRepository participationRepository;
-
+    private final PdfExportService pdfExportService;
     @GetMapping("/retrieve-all-evenements")
     public List<Evenements> getEvenements() {
         return evenementsService.retrieveAllEvenements()
@@ -223,5 +226,14 @@ public class EvenementsRestController {
 
         return result;
     }
+    @GetMapping("/export/pdf")
+    public void exportToPdf(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=evenements.pdf";
+        response.setHeader(headerKey, headerValue);
 
+        List<Evenements> evenements = evenementsService.retrieveAllEvenements();
+        pdfExportService.exportDeuxTables(evenements, response);
+    }
 }

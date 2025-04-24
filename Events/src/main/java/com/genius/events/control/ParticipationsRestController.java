@@ -8,12 +8,15 @@ import com.genius.events.repository.EvenementsRepository;
 import com.genius.events.repository.ParticipationsRepository;
 import com.genius.events.service.IListeAttenteService;
 import com.genius.events.service.IParticipationsService;
+import com.genius.events.service.PdfExportService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
@@ -22,6 +25,8 @@ import java.util.List;
 @RequestMapping("/participations")
 public class ParticipationsRestController {
     IParticipationsService participationsService;
+
+
 
     private final EvenementsRepository evenementsRepository;
     @Autowired
@@ -112,6 +117,9 @@ public class ParticipationsRestController {
     public Long countByEvenement(@PathVariable Long id) {
         return participationsService.countByEvenementId(id);
     }
+
+
+
 
 
 }
