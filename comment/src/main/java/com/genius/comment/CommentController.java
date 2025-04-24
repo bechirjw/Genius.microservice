@@ -19,10 +19,7 @@ import java.util.List;
 public class CommentController {
     @Autowired
     private CommentService commentService;
-    private static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
-    private static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
-    private static final String FROM_PHONE = System.getenv("TWILIO_FROM_PHONE");
-    private static final String TO_PHONE = System.getenv("TWILIO_TO_PHONE");
+
 
     // Récupérer tous les commentaires
     @GetMapping

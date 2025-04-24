@@ -88,18 +88,9 @@ public class PostController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removePost(@PathVariable Long postId) {
         // Récupérer le post avant suppression pour avoir les détails
-        Post postToDelete = postService.retrievePost(postId);
 
         postService.removePost(postId);
 
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message.creator(
-                new PhoneNumber(TO_PHONE),
-                new PhoneNumber(FROM_PHONE),
-                "📌 [Blog Admin] Genius sSuppression d'article\n" +
- "• Titre: \"" + postToDelete.getTitle() + "\"\n" +
-"• Supprimé le: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM à HH'h'mm")) + "Cette action est irréversible."
-        ).create();
     }
 
 
