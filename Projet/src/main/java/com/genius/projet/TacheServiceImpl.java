@@ -49,8 +49,22 @@ public class TacheServiceImpl implements ITacheService{
     }
 
     // 5. Modifier une tâche
+    @Override
     public Tache modifyTache(Tache t) {
-        return tacheRepository.save(t);
+        Tache existing = tacheRepository.findById(t.getId()).orElseThrow();
+
+        existing.setTitre(t.getTitre());
+        existing.setDescription(t.getDescription());
+        existing.setEstimation(t.getEstimation());
+        existing.setPriorite(t.getPriorite());
+        existing.setStatut(t.getStatut());
+
+        if (t.getProjet() != null && t.getProjet().getId() != null) {
+            Projet projet = projetRepository.findById(t.getProjet().getId()).orElseThrow();
+            existing.setProjet(projet);
+        }
+
+        return tacheRepository.save(existing);
     }
 
     // 6. Récupérer toutes les tâches d’un projet
