@@ -2,6 +2,7 @@ package com.genuis.ressources;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.ws.rs.PathParam;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,20 +36,21 @@ public class RessourceRestController {
     private static final Logger logger = LoggerFactory.getLogger(RessourceRestController.class);
     @Autowired
     private IRessourceService ressourceService;
-
+    //  @PostMapping("/{idCategorie}/ajout-ressource/user/{idUser}")
+    // public ResponseEntity<?> addRessourceWithFiles(@PathParam("idUser") Long idUser,
     @PostMapping("/{idCategorie}/ajout-ressource")
-    public ResponseEntity<?> addRessourceWithFiles(
-            @PathVariable("idCategorie") Long idCategorie,
-            @RequestParam("titre") String titre,
-            @RequestParam("description") String description,
-            @RequestParam("status") StatutRessource status,
-            @RequestParam("type") TypeRessource type,
+    public ResponseEntity<?> addRessourceWithFiles(//@PathParam("idUser") Long idUser,
+                                                   @PathVariable("idCategorie") Long idCategorie,
+                                                   @RequestParam("titre") String titre,
+                                                   @RequestParam("description") String description,
+                                                   @RequestParam("status") StatutRessource status,
+                                                   @RequestParam("type") TypeRessource type,
 
-            @RequestParam(value = "prix", required = false) Long prix,
-            @RequestParam(value = "image", required = false) MultipartFile image,
-            @RequestParam(value = "files", required = false) MultipartFile[] files,
-            @RequestParam(value = "text", required = false) String text,
-            @RequestParam(value = "lien", required = false) String lien
+                                                   @RequestParam(value = "prix", required = false) Long prix,
+                                                   @RequestParam(value = "image", required = false) MultipartFile image,
+                                                   @RequestParam(value = "files", required = false) MultipartFile[] files,
+                                                   @RequestParam(value = "text", required = false) String text,
+                                                   @RequestParam(value = "lien", required = false) String lien
     ) {
         try {
             Ressource ressource = new Ressource();
@@ -57,6 +59,7 @@ public class RessourceRestController {
             ressource.setDescription(description);
             ressource.setIdCategorie(idCategorie);
             ressource.setType(type);
+            //  ressource.setIduser(idUser);
 
 
             // Définir le statut
@@ -106,6 +109,7 @@ public class RessourceRestController {
                 ressource.setFichiers(fichiersList);
             }
 
+            // Ressource saved = ressourceService.addRessource(idUser,ressource);
             Ressource saved = ressourceService.addRessource(ressource);
             return ResponseEntity.ok(saved);
 
@@ -194,7 +198,7 @@ public class RessourceRestController {
         }
     }
 
-// recuperer une ressource par son ID
+    // recuperer une ressource par son ID
     @GetMapping("/{id}")
     public ResponseEntity<?> getRessourceById(@PathVariable("id") Long id) {
         Optional<Ressource> optionalRessource = ressourceService.getRessourceById(id);
@@ -291,42 +295,5 @@ public class RessourceRestController {
         return ResponseEntity.ok(ressourceService.retrieveAllRessourcesByCategories(idCategorie));
     }
 
-    // Dans RessourceRestController.java
 
-    @Operation(description = "Générer une mindmap à partir d'un PDF existant")
-    @GetMapping("/{idRessource}/generate-mindmap")
-    public ResponseEntity<?> generateMindmapFromPdf(
-            @PathVariable("idRessource") Long idRessource,
-            @RequestParam(value = "fileIndex", defaultValue = "0") int fileIndex) {
-
-        try {
-            // 1. Récupérer la ressource
-            Optional<Ressource> optionalRessource = ressourceService.getRessourceById(idRessource);
-            if (optionalRessource.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
-
-            Ressource ressource = optionalRessource.get();
-            List<Fichier> fichiers = ressource.getFichiers();
-
-            // 2. Vérifier qu'il y a des fichiers PDF
-            if (fichiers == null || fichiers.isEmpty()) {
-                return ResponseEntity.badRequest().body("Aucun fichier PDF associé à cette ressource");
-            }
-
-            // 3. Récupérer le chemin du PDF (par index ou en cherchant le 1er PDF)
-            Fichier pdfFichier = fichiers.get(fileIndex); // Ou parcourir pour trouver un PDF
-            String pdfPath = pdfFichier.getFilePath();
-
-            // 4. Appeler le script Python
-            String jsonMindmap = PythonRunner.runMindmapGenerator(pdfPath);
-
-            return ResponseEntity.ok(jsonMindmap);
-
-        } catch (Exception e) {
-            logger.error("Erreur lors de la génération de la mindmap : {}", e.getMessage(), e);
-            return ResponseEntity.internalServerError()
-                    .body("Erreur serveur : " + e.getMessage());
-        }
-    }
 }

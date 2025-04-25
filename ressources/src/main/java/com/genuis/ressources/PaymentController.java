@@ -36,9 +36,9 @@ public class PaymentController {
         }
     }
 
-    @GetMapping("/user/{userId}/ressources")
+   /* @GetMapping("/user/{userId}/ressources")
     public List<Ressource> getRessourcesAcheteesParUtilisateur(@PathVariable Long userId) {
         return StripeService.getRessourcesAcheteesParUtilisateur(userId);
-    }
+    }*/
 }
 
