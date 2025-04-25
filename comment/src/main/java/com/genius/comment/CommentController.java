@@ -34,27 +34,25 @@ public class CommentController {
     }
 
     // Ajouter un commentaire
-  //  @PostMapping
-  //  public ResponseEntity <Comment> addComment(@RequestBody Comment comment) {
-      //  Comment createdComment = commentService.addComment(comment);
+    //  @PostMapping
+    //  public ResponseEntity <Comment> addComment(@RequestBody Comment comment) {
+    //  Comment createdComment = commentService.addComment(comment);
     //    return ResponseEntity.status(HttpStatus.CREATED).body(createdComment);
     //}
 
     // Supprimer un commentaire par ID
-        @DeleteMapping("/{commentId}")
-        @ResponseStatus(HttpStatus.NO_CONTENT)
-        public void removeComment(@PathVariable Long commentId) {
-            commentService.removeComment(commentId);
+    @DeleteMapping("/{commentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeComment(@PathVariable Long commentId) {
+        commentService.removeComment(commentId);
 
-        }
+    }
 
     // Modifier un commentaire existant
     //@PutMapping
-  //  public Comment modifyComment(@RequestBody Comment comment) {
-     //   return commentService.modifyComment(comment);
+    //  public Comment modifyComment(@RequestBody Comment comment) {
+    //   return commentService.modifyComment(comment);
     //}
-
-
 
 
     @PostMapping("/{postId}/{userId}")
@@ -68,14 +66,20 @@ public class CommentController {
     public List<Comment> getCommentsByPost(@PathVariable Long postId) {
         return commentService.getCommentsByPostId(postId);
     }
+
     @PutMapping("/{commentId}/user/{userId}")
     public ResponseEntity<Comment> updateComment(@RequestBody Comment comment,
-                                           @PathVariable Long commentId,
-                                           @PathVariable Long userId) {
+                                                 @PathVariable Long commentId,
+                                                 @PathVariable Long userId) {
 
-            comment.setIdComment(commentId);
-            return ResponseEntity.ok(commentService.modifyComment(comment,userId));
+        comment.setIdComment(commentId);
+        return ResponseEntity.ok(commentService.modifyComment(comment, userId));
 
-}
+    }
 
+    @PutMapping("/{id}/like/{userId}")
+    public ResponseEntity<Void> likeComment(@PathVariable Long id, @PathVariable Long userId) {
+        commentService.likeComment(id, userId);
+        return ResponseEntity.ok().build();
+    }
 }

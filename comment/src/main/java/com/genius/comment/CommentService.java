@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class CommentService {
@@ -67,15 +69,19 @@ public class CommentService {
     public void removeComment (Long CommentId) {
         commentRepository.deleteById(CommentId);
     }
-   // public Comment modifyComment (Comment comment,Long userId) {
 
-     //   return commentRepository.save(comment);
-   // }
 
 
 
     public List<Comment> getCommentsByPostId(Long postId) {
         return commentRepository.findByPostId(postId);
     }
-
+    public void likeComment(Long commentId, Long userId) {
+        Optional<Comment> optionalComment = commentRepository.findById(commentId);
+        if (optionalComment.isPresent()) {
+            Comment comment = optionalComment.get();
+            comment.like(userId);
+            commentRepository.save(comment);
+        }
+    }
 }

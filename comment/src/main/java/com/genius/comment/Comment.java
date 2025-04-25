@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 
 @NoArgsConstructor
@@ -19,7 +22,12 @@ public class Comment {
     private String CreatedBy;
     private Long postId;
     private Long userId;
+    
     private Long likes;
+
+    @ElementCollection
+    private Set<Long> likedBy = new HashSet<>();
+
 
     public void setPostId(Long postId) {
         this.postId = postId;
@@ -63,5 +71,11 @@ public class Comment {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         CreatedAt = createdAt;
+    }
+    public void like(Long userId) {
+        if (!likedBy.contains(userId)) {
+            this.likes++;
+            likedBy.add(userId);
+        }
     }
 }
