@@ -16,5 +16,5 @@ public class Collaboration {
     private String statut;
     private Date dateDemande;
     private Date dateValidation;
-
+    private Long projetId;
 }

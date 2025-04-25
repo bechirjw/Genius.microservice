@@ -48,7 +48,10 @@ public class ProjetServiceImpl implements IProjetService {
         var projetOptional = projetRepository.findById(projetId);
 
         if (projetOptional.isPresent()) {
-            var projet = projetOptional.get(); // C’est bien un Projet
+            var projet = projetOptional.get(); // ✅ le projet récupéré
+
+            // 🔁 Appel au repository des tâches pour ce projet
+            List<Tache> taches = projet.getTaches(); // ou tacheRepository.findByProjetId(projetId) si tu préfères
 
             return FullProjetResponse.builder()
                     .titre(projet.getTitre())
@@ -59,12 +62,14 @@ public class ProjetServiceImpl implements IProjetService {
                     .dateFinPrevue(projet.getDateFinPrevue())
                     .nombreMaxCollaborateurs(projet.getNombreMaxCollaborateurs())
                     .competencesRequises(projet.getCompetencesRequises())
-                    .collaborations(client.findAllCollaborationsByProjet(projetId))
+                    .taches(taches) // ✅ Ajout des tâches dans la réponse
+                    .collaborations(client.findAllCollaborationsByProjet(projetId)) // ✅ Ajout des collaborations depuis Feign
                     .build();
 
         } else {
             throw new RuntimeException("Projet not found");
         }
     }
+
 
 }

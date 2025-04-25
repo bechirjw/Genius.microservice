@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Map;
 
 //@Tag(name = "Gestion Tache")
 @RestController
@@ -55,5 +56,10 @@ public class TacheRestController {
         return tacheService.getTachesByProjet(projetId);
     }
 
+    @PutMapping("/update-statut/{tache-id}")
+    public Tache updateStatut(@PathVariable("tache-id") Long tacheId, @RequestBody Map<String, String> payload) {
+        String newStatut = payload.get("statut");
+        return tacheService.updateStatut(tacheId, newStatut);
+    }
 
 }

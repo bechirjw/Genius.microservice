@@ -1,9 +1,11 @@
 package com.genius.projet;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +30,11 @@ public class Projet {
 
     @ElementCollection
     private List<String> competencesRequises;
+
+
+    @OneToMany(mappedBy = "projet", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Tache> taches = new ArrayList<>();
 
 
 }

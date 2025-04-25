@@ -27,6 +27,6 @@ public class FullProjetResponse {
     private List<String> competencesRequises;
 
 
-     List<Collaboration> collaborations;
-
+    private List<Tache> taches;              // ✅ Ajout : liste des tâches
+    private List<Collaboration> collaborations; // ✅ Déjà là : liste des collaborations
 }

@@ -58,4 +58,11 @@ public class TacheServiceImpl implements ITacheService{
         return tacheRepository.findByProjetId(projetId);
     }
 
+    @Override
+    public Tache updateStatut(Long tacheId, String newStatut) {
+        Tache tache = tacheRepository.findById(tacheId).orElseThrow(() -> new RuntimeException("Tâche non trouvée"));
+        tache.setStatut(newStatut);
+        return tacheRepository.save(tache);
+    }
+
 }

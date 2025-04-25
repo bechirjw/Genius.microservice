@@ -14,5 +14,6 @@ public interface ITacheService {
     Tache modifyTache(Tache t);
 
     List<Tache> getTachesByProjet(Long projetId);
+    Tache updateStatut(Long tacheId, String newStatut);
 
 }

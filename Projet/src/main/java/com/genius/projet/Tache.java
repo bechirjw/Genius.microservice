@@ -1,5 +1,6 @@
 package com.genius.projet;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,8 @@ public class Tache {
 
     @ManyToOne
     @JoinColumn(name = "projet_id")
+    @JsonBackReference
+
     private Projet projet;
 
 }

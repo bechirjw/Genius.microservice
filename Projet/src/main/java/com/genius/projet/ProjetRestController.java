@@ -6,9 +6,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 //@Tag(name = "Gestion Projet")
 @RestController
@@ -21,6 +24,13 @@ public class ProjetRestController {
 
     @Autowired
      IProjetService projetService;
+    @Autowired
+    private IAService iaService;
+    @Autowired
+    private ProjetRepository projetRepository;
+
+    @Autowired
+    private TacheRepository tacheRepository;
 
 //    @Operation(description = "Récupérer tous les projets")
     @GetMapping("/retrieve-all-projets")
@@ -59,5 +69,20 @@ public class ProjetRestController {
     ) {
         return ResponseEntity.ok(projetService.findProjetsWithCollaborations(projetId));
     }
+
+
+
+
+    @PostMapping("/roadmap/{projetId}")
+    public Mono<List<Map<String, Object>>> generateRoadmap(@PathVariable Long projetId) {
+        Projet projet = projetRepository.findById(projetId).orElseThrow();
+        List<String> taches = tacheRepository.findByProjetId(projetId)
+                .stream()
+                .map(Tache::getTitre)
+                .collect(Collectors.toList());
+
+        return iaService.generateRoadmap(projet.getDescription(), taches);
+    }
+
 
 }
