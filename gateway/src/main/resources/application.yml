@@ -35,11 +35,18 @@ spring:
             - Path=/api/v1/comments/**
           filters:
             - StripPrefix=0
-
+        - id: Events-service
+          uri: lb://Events
+          predicates:
+            - Path=/**
+          filters:
+            - StripPrefix=0
 server:
   port: 8222
+
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
