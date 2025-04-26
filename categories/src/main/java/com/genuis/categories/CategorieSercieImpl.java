@@ -1,6 +1,7 @@
 package com.genuis.categories;
 
 import com.genuis.categories.client.RessourceClient;
+import com.genuis.categories.client.UserClient;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,12 @@ public class CategorieSercieImpl implements ICategorieService {
 
     @Autowired
     private RessourceClient ressourceClient;
+
+    @Autowired
+
+    private  UserClient userClient;
+
+
 @Override
 public Categorie updateLikes(Long idCategorie, Integer likes) {
     Categorie categorie = categorieRepository.findById(idCategorie)

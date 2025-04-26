@@ -18,6 +18,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Base64;
+
+
+
 @Tag(name = "Gestion des Catégories")
 @RestController
 @AllArgsConstructor
@@ -30,6 +33,10 @@ public class CategorieRestController {
 
     @Autowired
     private ICategorieService categorieService;
+    @Autowired
+    private final FavoriService favoriService;
+
+
 @Operation(description = "Récupérer toutes les catégories")
 @GetMapping("/retrieve-all-categories")
 public List<CategorieDTO> getCategories() {
@@ -197,4 +204,25 @@ private CategorieDTO convertToDto(Categorie categorie) {
     public ResponseEntity<FullResources> getRessourcesByCategorie(@PathVariable("categorie-id") Long idCategorie) {
         return ResponseEntity.ok(categorieService.retrieveCategoriewithresources(idCategorie));
     }
+
+    @PostMapping("/api/favoris/ajouter")
+    public ResponseEntity<Void> ajouterFavori(@RequestParam Long idUser, @RequestParam Long idCategorie) {
+        favoriService.ajouterFavori(idUser, idCategorie);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/api/favoris/retirer")
+    public ResponseEntity<Void> retirerFavori(@RequestParam Long idUser, @RequestParam Long idCategorie) {
+        favoriService.retirerFavori(idUser, idCategorie);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/api/favoris/utilisateur/{idUser}")
+    public ResponseEntity<List<Categorie>> getFavoris(@PathVariable Long idUser) {
+        List<Categorie> favoris = favoriService.getFavorisByUser(idUser);
+        return ResponseEntity.ok(favoris);
+    }
+
+
+
 }
