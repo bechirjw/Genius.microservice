@@ -19,7 +19,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="post" />
-        <module name="AI" />
         <module name="comment" />
       </profile>
     </annotationProcessing>

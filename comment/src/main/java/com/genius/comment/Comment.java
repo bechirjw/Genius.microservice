@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -22,20 +21,13 @@ public class Comment {
     private String CreatedBy;
     private Long postId;
     private Long userId;
-    
-    private Long likes;
+
+    private Long likes = 0L;  // Initialize to 0 if no likes have been set
 
     @ElementCollection
-    private Set<Long> likedBy = new HashSet<>();
+    @JsonIgnore // Ignore the 'likedBy' set from being serialized into JSON
+    private Set<Long> likedBy = new HashSet<>();  // Initialize here as well
 
-
-    public void setPostId(Long postId) {
-        this.postId = postId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
     public Long getIdComment() {
         return idComment;
     }
@@ -51,12 +43,15 @@ public class Comment {
     public void setIdComment(Long idComment) {
         this.idComment = idComment;
     }
+
     public Long getPostId() {
         return postId;
     }
+
     public Long getUserId() {
         return userId;
     }
+
     public String getDescription() {
         return description;
     }
@@ -72,10 +67,29 @@ public class Comment {
     public void setCreatedAt(LocalDateTime createdAt) {
         CreatedAt = createdAt;
     }
+
+    // Getter for likes to return the count
+    public Long getLikes() {
+        return likes;
+    }
+
+    // Logic for liking a comment
     public void like(Long userId) {
-        if (!likedBy.contains(userId)) {
-            this.likes++;
-            likedBy.add(userId);
+        if (likedBy == null) {
+            likedBy = new HashSet<>();  // Initialize likedBy if null
         }
+
+        if (!likedBy.contains(userId)) {
+            likes++;  // Increment likes count
+            likedBy.add(userId);  // Add user to the likedBy set
+        }
+    }
+
+    public void setPostId(Long postId) {
+        this.postId=postId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId=userId;
     }
 }

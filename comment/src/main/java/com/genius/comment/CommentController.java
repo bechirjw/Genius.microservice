@@ -71,11 +71,10 @@ public class CommentController {
     public ResponseEntity<Comment> updateComment(@RequestBody Comment comment,
                                                  @PathVariable Long commentId,
                                                  @PathVariable Long userId) {
-
         comment.setIdComment(commentId);
         return ResponseEntity.ok(commentService.modifyComment(comment, userId));
-
     }
+
 
     @PutMapping("/{id}/like/{userId}")
     public ResponseEntity<Void> likeComment(@PathVariable Long id, @PathVariable Long userId) {

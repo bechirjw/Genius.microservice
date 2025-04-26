@@ -1,0 +1,101 @@
+eureka:
+  instance:
+    hostname: localhost  # Hostname of the Eureka instance
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka  # Eureka server URL
+    wait-time-in-ms-when-sync-empty: 5000  # Wait time for Eureka client when no services are registered
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+
+  config:
+    import: optional:configserver:http://localhost:8888  # Config server URL, optional in case it’s unavailable
+  application:
+    name: user-service  # Name of the microservice
+  datasource:
+    url: jdbc:mysql://localhost:3306/projet4Arctic?createDatabaseIfNotExist=true  # MySQL database URL
+    username: root  # Database username
+    password: ''  # Database password (consider securing this in production)
+  mail:
+    host: localhost  # SMTP host for sending emails
+    port: 1025  # SMTP port (assumed to be for local mail server)
+    username: emna  # Email username
+    password: emna  # Email password
+    properties:
+      mail.smtp.trust: '*'  # Trust all SMTP servers
+      mail.smtp.auth: true  # Enable authentication
+      mail.smtp.starttls.enabled: true  # Enable STARTTLS for secure connection
+      mail.smtp.connectiontimeout: 5000  # SMTP connection timeout
+      mail.smtp.timeout: 3000  # SMTP read timeout
+      mail.smtp.writetimeout: 5000  # SMTP write timeout
+  jpa:
+    show-sql: true  # Show SQL queries in logs
+    properties:
+      hibernate.format_sql: true  # Format SQL for better readability
+    hibernate:
+      ddl-auto: update  # Automatically update the database schema (beware of using in production)
+  servlet:
+    multipart:
+      enabled: true  # Enable file uploads
+      max-file-size: 10MB  # Maximum file size for uploads
+      max-request-size: 20MB  # Maximum request size for uploads
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 216322527652-vj6mlstcnbss71dg6g5d1cbfh5b3n70m.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope: email,profile
+          facebook:
+            client-id: 651962354499626
+            client-secret: 21623f1dde6bc8ccc595a82a69d75861
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+          github:
+            client-id: d3e47fc2ddd966fa4352
+            client-secret: 3bc0f6b8332f93076354c2a5bada2f5a05aea60d
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope: user:email,read:user
+      provider:
+        facebook:
+          authorization-uri: https://www.facebook.com/v3.0/dialog/oauth
+          token-uri: https://graph.facebook.com/v3.0/oauth/access_token
+          user-info-uri: https://graph.facebook.com/v3.0/me?fields=email,name
+  api-docs:
+    enabled: true  # Enable Swagger API documentation
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true  # Enable Swagger UI for easy API testing
+    path: /swagger-ui.html
+
+server:
+  port: 5300  # Server port where the Spring Boot app listens
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970  # JWT Secret key for signing tokens
+    expiration: 8640000  # JWT expiration time in milliseconds (1 day)
+    mailing:
+      frontend:
+        activation-url: http://localhost:4200/front/activate-account  # Activation URL for email activation
+  auth:
+    tokenSecret: 04ca023b39512e46d0c2cf4b48d5aac61d34302994c87ed4eff225dcf3b0a218739f3897051a057f9b846a69ea2927a587044164b7bae5e1306219d50b588cb1
+    tokenExpirationMsec: 864000000  # Token expiration time (10 days in milliseconds)
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:4200/oauth2/redirect  # URI for OAuth2 redirect
+
+upload:
+  dir: src/main/resources/static/images/  # Directory for uploaded files
+
+face:
+  api:
+    url: http://localhost:8000/compare-faces/  # Face recognition API URL for comparison
