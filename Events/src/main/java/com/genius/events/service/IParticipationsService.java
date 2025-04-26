@@ -1,6 +1,7 @@
 package com.genius.events.service;
 
 
+import com.genius.events.dto.ParticipationDetailsDTO;
 import com.genius.events.entity.Evenements;
 import com.genius.events.entity.Participations;
 
@@ -16,5 +17,6 @@ public interface IParticipationsService {
     List<Evenements> getEvenementsByUtilisateurId(Long utilisateurId);
 
     Long countByEvenementId(Long idEvenement);
+    List<ParticipationDetailsDTO> getParticipationDetailsByEvenement(Long evenementId);
 
 }

@@ -22,6 +22,8 @@ public interface ParticipationsRepository extends JpaRepository<Participations,L
     List<Evenements> findEvenementsByUtilisateurId(@Param("utilisateurId") Long utilisateurId);
 
 
+    @Query("SELECT p FROM Participations p WHERE p.evenement.id = :evenementId")
+    List<Participations> findByEvenementId(@Param("evenementId") Long evenementId);
 
 
 
