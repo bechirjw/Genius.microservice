@@ -223,6 +223,9 @@ private CategorieDTO convertToDto(Categorie categorie) {
         return ResponseEntity.ok(favoris);
     }
 
-
-
+    // Like une catégorie
+    @PostMapping("/{categorieId}/like")
+    public void likeCategorie(@PathVariable Long categorieId, @RequestParam Long userId) {
+        categorieService.likeCategorie(categorieId, userId);
+    }
 }

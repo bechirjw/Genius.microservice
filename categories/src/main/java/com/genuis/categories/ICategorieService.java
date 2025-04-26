@@ -24,6 +24,6 @@ public interface ICategorieService {
     CategorieDTO retrieveCategorieWithImage(Long idCategorie);
 
     Categorie updateLikes(Long idCategorie, Integer likes);
-
+     void likeCategorie(Long categorieId, Long userId);
 
 }

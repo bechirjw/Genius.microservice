@@ -65,7 +65,8 @@
         <dependency>
             <groupId>com.stripe</groupId>
             <artifactId>stripe-java</artifactId>
-            <version>24.8.0</version> <!-- ou la dernière version -->
+            <version>24.10.0</version> <!-- avril 2025 -->
+
         </dependency>
 
         <!-- Dépendance pour Spring Web -->

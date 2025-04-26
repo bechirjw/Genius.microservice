@@ -117,4 +117,11 @@ public Categorie updateLikes(Long idCategorie, Integer likes) {
 
         return categorieRepository.save(categorie);
     }
+
+    public void likeCategorie(Long categorieId, Long userId) {
+        Categorie categorie = categorieRepository.findById(categorieId)
+                .orElseThrow(() -> new RuntimeException("Categorie not found"));
+        categorie.like(userId);
+        categorieRepository.save(categorie);
+    }
 }
