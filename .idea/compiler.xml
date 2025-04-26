@@ -9,9 +9,19 @@
         <outputRelativeToContentRoot value="true" />
         <module name="quiz-service" />
         <module name="config-server" />
+        <module name="comment" />
         <module name="user-service" />
         <module name="gateway" />
         <module name="discovery" />
+      </profile>
+      <profile name="Annotation profile for post" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="post" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,10 +30,13 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AI" options="-parameters" />
+      <module name="comment" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="demo" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="post" options="-parameters" />
       <module name="quiz-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>

@@ -23,6 +23,18 @@ spring:
             - Path=/quiz/**
           filters:
             - StripPrefix=1
+        - id: posts
+          uri: lb://posts
+          predicates:
+            - Path=/api/v1/posts/**
+          filters:
+            - StripPrefix=0
+        - id: comments
+          uri: lb://comments
+          predicates:
+            - Path=/api/v1/comments/**
+          filters:
+            - StripPrefix=0
 
 server:
   port: 8222
