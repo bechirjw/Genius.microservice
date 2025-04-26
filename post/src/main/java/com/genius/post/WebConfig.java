@@ -1,4 +1,4 @@
-package com.genius.post;
+/* package com.genius.post;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -19,4 +19,4 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .maxAge(3600);  // Cache les pré-vérifications CORS pendant 1 heure
     }
-}
+}*/

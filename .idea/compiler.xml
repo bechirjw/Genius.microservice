@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
+        <module name="comment" />
         <module name="gateway" />
         <module name="discovery" />
       </profile>
@@ -19,7 +20,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="post" />
-        <module name="comment" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
