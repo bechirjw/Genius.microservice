@@ -16,6 +16,7 @@ import tn.esprit.projet4arcticback.user_service.security.oauth2.*;
 import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -30,6 +31,7 @@ public class SecurityConfig {
 
     private final JwtFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
@@ -40,6 +42,8 @@ public class SecurityConfig {
                                 "/api/password-reset/**",
                                         "/auth/**",
                                         "/v2/api-docs",
+                                        "/api/auth/**", // ➡️ AJOUT ici pour enregistrer/login sans être authentifié
+
                                         "/v3/api-docs",
                                         "/v3/api-docs/**",
                                         "/swagger-resources",

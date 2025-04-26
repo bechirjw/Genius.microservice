@@ -1,6 +1,8 @@
 package com.genius.quizservice.entity;
 
 import com.genius.quizservice.dto.TestResultDTO;
+import com.genius.quizservice.dto.UserDTO;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,6 +15,8 @@ public class TestResult {
     private int totalQuestions;
     private int correctAnswers;
     private double percentage;
+    @Column(name = "user_id")
+    private Long userId; // ✅ just a primitive field, no relation
 
     @ManyToOne
     @JoinColumn(name = "test_id")
@@ -25,7 +29,10 @@ public class TestResult {
         dto.setTotalQuestions(totalQuestions);
         dto.setCorrectAnswers(correctAnswers);
         dto.setPercentage(percentage);
+
         dto.setTestName(test.getTitle());
+        dto.setId(userId); // ✅ include if your DTO supports it
+
 
         return dto;
     }

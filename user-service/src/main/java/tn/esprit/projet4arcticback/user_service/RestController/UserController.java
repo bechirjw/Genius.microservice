@@ -44,4 +44,5 @@ public class UserController {
     public ResponseEntity<User> changeRole(@PathVariable Long id, @RequestBody Role newRole) {
         return ResponseEntity.ok(userservice.changeRole(id, newRole));
     }
+
 }

@@ -13,6 +13,7 @@ import com.genius.quizservice.dto.QuestionDTO;
 import com.genius.quizservice.dto.SubmitTestDTO;
 import com.genius.quizservice.service.TestService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class TestController {
 
     @Autowired
     public AIQuestionGeneratorService aiQuestionGeneratorService;
+
+
 
     @PostMapping()
     public ResponseEntity<?> createTest(@RequestBody testDTO dto) {
@@ -110,6 +113,13 @@ public class TestController {
                     .body("Error generating questions: " + e.getMessage());
         }
     }
+    @GetMapping("/api/test-ping-user")
+    public String testUserService() {
+        RestTemplate restTemplate = new RestTemplate();
+        String userServiceUrl = "http://localhost:5300/api/users/ping"; // user-service local
+        return restTemplate.getForObject(userServiceUrl, String.class);
+    }
+
 
 
 }

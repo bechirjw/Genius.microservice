@@ -8,6 +8,6 @@ import java.util.List;
 
 public class SubmitTestDTO {
     private long testId;
-
+    private Long userId; // ✅ NEW: passed from frontend
     private List<QuestionResponse> responses;
 }

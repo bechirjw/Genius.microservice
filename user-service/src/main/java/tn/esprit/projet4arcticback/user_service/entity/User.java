@@ -59,7 +59,7 @@ public class User implements Serializable, UserDetails, Principal {
     @Column(insertable = false)
     private LocalDateTime LastModifiedDate;
     @Lob
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String image;
 
     @Override

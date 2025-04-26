@@ -305,7 +305,7 @@ public class FacialRecognitionController {
 
             MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
             body.add("file1", new MultipartInputStreamFileResource(file.getInputStream(), file.getOriginalFilename()));
-            String imagePath = "src/main/resources/static/images/" + user.getImage();
+            String imagePath = "user-service/src/main/resources/static/images/" + user.getImage();
 
             File staticFile = new File(imagePath);
             if (!staticFile.exists()) {
@@ -351,8 +351,8 @@ public class FacialRecognitionController {
     public void rechargerImages() throws IOException {
         logger.info("Starting image reload process");
 
-        Path source = Paths.get("src/main/resources/static/images/");
-        Path destination = Paths.get("target/classes/static/images/");
+        Path source = Paths.get("user-service/src/main/resources/static/images/");
+        Path destination = Paths.get("user-service/target/classes/static/images/");
 
         logger.debug("Source directory: {}", source);
         logger.debug("Destination directory: {}", destination);

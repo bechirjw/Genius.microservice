@@ -1,0 +1,46 @@
+version: '3.8'  # Specify Docker Compose version
+
+services:
+  mysql:
+    container_name: mysql-bsn
+    image: mysql:latest  # Use MySQL image (latest version)
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # Define the root password for MySQL
+      MYSQL_USER: username  # Define a MySQL user
+      MYSQL_PASSWORD: password  # Define the password for the user
+      MYSQL_DATABASE: book_social_network  # Define the database name
+    volumes:
+      - mysql:/var/lib/mysql  # Persist MySQL data
+    ports:
+      - "3307:3306"  # Expose MySQL port
+    networks:
+      - spring-demo
+    restart: unless-stopped
+
+  mail-dev:
+    container_name: mail-dev-bsn
+    image: maildev/maildev
+    ports:
+      - "1080:1080"  # Web interface port
+      - "1025:1025"  # SMTP port
+
+  keycloak:
+    container_name: keycloak-bsn
+    image: quay.io/keycloak/keycloak:24.0.2
+    ports:
+      - "9090:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    networks:
+      - spring-demo
+    command:
+      - "start-dev"  # Start Keycloak in dev mode
+
+networks:
+  spring-demo:
+    driver: bridge
+
+volumes:
+  mysql:
+    driver: local
