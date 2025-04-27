@@ -4,4 +4,10 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: discovery
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaserver:8761/eureka/
+    wait-time-in-ms-when-sync-empty: 5000
+
 

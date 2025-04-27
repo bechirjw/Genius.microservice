@@ -53,6 +53,12 @@ spring:
             - Path=/api/communities/**
           filters:
             - StripPrefix=0
+        - id: categories-service
+          uri: lb://categories
+          predicates:
+            - Path=/categorie/**
+          filters:
+            - StripPrefix=1
         - id: Events-service
           uri: lb://Events
           predicates:
@@ -67,7 +73,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
 
 
 

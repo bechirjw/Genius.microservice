@@ -1,6 +1,7 @@
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\service\TestService.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\dto\TestDetailsDTO.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\dto\testDTO.java
+D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\service\UserClient.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\repository\TestResultRepository.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\entity\Question.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\service\AIQuestionGeneratorService.java
@@ -13,7 +14,9 @@ D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quiz
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\dto\QuestionResponse.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\dto\SubmitTestDTO.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\entity\Test.java
+D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\dto\UserDTO.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\service\TestServiceImpl.java
+D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\config\FeignClientConfig.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\repository\QuestionRepository.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\QuizServiceApplication.java
 D:\Pi-dev\gitquiz\Genius.microservice\quiz-service\src\main\java\com\genius\quizservice\repository\TestRepository.java

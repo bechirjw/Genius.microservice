@@ -1,0 +1,41 @@
+eureka:
+  instance:
+    hostname: localhost  # Nom d'hôte de l'instance Eureka
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka  # URL du service Eureka
+    wait-time-in-ms-when-sync-empty: 5000
+server:
+  port: 5010  # Port sur lequel le serveur Spring Boot écoute
+  max-http-request-header-size: 65536
+spring:
+  application:
+    name: ressources  # Nom de l'application Spring Boot
+  config:
+    import: optional:configserver:http://localhost:8888  # Importation optionnelle de la configuration depuis le serveur de configuration
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/ressources?createDatabaseIfNotExist=true
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+  servlet:
+    multipart:
+      max-file-size: 500MB  # Taille maximale d'un fichier
+      max-request-size: 500MB  # Taille maximale d'une requête entière
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Stratégie de génération du schéma de la base de données (ici, création à chaque démarrage)
+    database: mysql  # Type de base de données
+    database-platform: org.hibernate.dialect.MySQLDialect  # Dialecte Hibernate pour MySQL$
+# ✅ Ajout de la clé Stripe
+stripe:
+  secret:
+    key: sk_test_51REAtZ4PwggyvyVQR6czHQVXiks0ifCKpZVuRB4FD4l9e4ZoRXw5tk6JWejbgxULz4BS9fjNWg9xuDy0rLCIFsyE00SbGQO9fj
+  webhook:
+    secret:
+      key: whsec_595d0e5ec5a7ff2da8c705a9edd4ac10dfdb28d7d0efefbbcd39d32fc1cd296d

@@ -1,0 +1,38 @@
+eureka:
+  instance:
+    hostname: localhost  # Nom d'hôte de l'instance Eureka
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka  # URL du service Eureka
+    wait-time-in-ms-when-sync-empty: 5000
+
+server:
+  port: 5020  # Port sur lequel le serveur Spring Boot écoute
+
+spring:
+  application:
+    name: categories  # Nom de l'application Spring Boot
+  config:
+    import: optional:configserver:http://localhost:8888  # Importation optionnelle de la configuration depuis le serveur de configuration
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/categories?createDatabaseIfNotExist=true
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # Stratégie de génération du schéma de la base de données (ici, mise à jour à chaque démarrage)
+    database: mysql  # Type de base de données
+    database-platform: org.hibernate.dialect.MySQLDialect  # Dialecte Hibernate pour MySQL
+  servlet:
+    multipart:
+      max-file-size: 150MB  # Taille maximale d'un fichier
+      max-request-size: 200MB  # Taille maximale d'une requête entière
+application:
+  config:
+    resource-url: http://localhost:5010/ressources  # URL de l'application Ressources
+
+openai:
+  api:
+    key: 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
