@@ -9,7 +9,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/votes")
-@CrossOrigin(origins = "*") // à adapter selon ton frontend
+//@CrossOrigin(origins = "*") // à adapter selon ton frontend
 public class VoteController {
 
     @Autowired
