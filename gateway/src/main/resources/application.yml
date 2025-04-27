@@ -35,6 +35,18 @@ spring:
             - Path=/api/v1/comments/**
           filters:
             - StripPrefix=0
+        - id: collaborations-service
+          uri: lb://collaborations
+          predicates:
+            - Path=/collaboration/**
+          filters:
+            - StripPrefix=0
+        - id: projets-service
+          uri: lb://projets
+          predicates:
+            - Path=/**
+          filters:
+            - StripPrefix=0
         - id: Events-service
           uri: lb://Events
           predicates:
@@ -44,9 +56,10 @@ spring:
 server:
   port: 8222
 
-
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+
 
