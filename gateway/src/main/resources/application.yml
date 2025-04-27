@@ -3,10 +3,31 @@ spring:
     name: gateway
   config:
     import: optional:configserver:http://localhost:8888
+  cloud:
+    gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:4200"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+      routes:
+        - id: categories-service
+          uri: lb://categories
+          predicates:
+            - Path=/categorie/**
+          filters:
+            - StripPrefix=1
+
+server:
+  port: 8222
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://eurekaserver:8761/eureka/
-    wait-time-in-ms-when-sync-empty: 5000
-
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

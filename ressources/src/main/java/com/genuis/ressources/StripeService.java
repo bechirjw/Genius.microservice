@@ -24,14 +24,14 @@ public class StripeService {
         Stripe.apiKey = secretKey;
     }
 
-    public Session createCheckoutSession(String resourceName, long amount, String successUrl, String cancelUrl) throws StripeException {
+    public Session createCheckoutSession(Long utilisateurId, Long ressourceId, String resourceName, long amount, String successUrl, String cancelUrl) throws StripeException {
         List<SessionCreateParams.LineItem> lineItems = List.of(
                 SessionCreateParams.LineItem.builder()
                         .setQuantity(1L)
                         .setPriceData(
                                 SessionCreateParams.LineItem.PriceData.builder()
                                         .setCurrency("eur")
-                                        .setUnitAmount(amount) // en centimes
+                                        .setUnitAmount(amount)
                                         .setProductData(
                                                 SessionCreateParams.LineItem.PriceData.ProductData.builder()
                                                         .setName(resourceName)
@@ -47,16 +47,11 @@ public class StripeService {
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 .setSuccessUrl(successUrl)
                 .setCancelUrl(cancelUrl)
+                .setClientReferenceId(utilisateurId.toString()) // 👈 utilisateur ID caché
+                .putMetadata("ressourceId", ressourceId.toString()) // 👈 ressource ID caché
                 .build();
 
         return Session.create(params);
     }
-
-    public List<Ressource> getRessourcesAcheteesParUtilisateur(Long userId) {
-       // Utilisateur utilisateur = utilisateurRepository.findById(userId).orElseThrow();
-       // return utilisateur.getRessourcesAchetees(); // ou une autre logique liée aux paiements
-    return (null);//provesoire
-    }
-
 }
 

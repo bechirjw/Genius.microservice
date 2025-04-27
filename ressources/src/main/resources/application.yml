@@ -36,3 +36,6 @@ spring:
 stripe:
   secret:
     key: sk_test_51REAtZ4PwggyvyVQR6czHQVXiks0ifCKpZVuRB4FD4l9e4ZoRXw5tk6JWejbgxULz4BS9fjNWg9xuDy0rLCIFsyE00SbGQO9fj
+  webhook:
+    secret:
+      key: whsec_595d0e5ec5a7ff2da8c705a9edd4ac10dfdb28d7d0efefbbcd39d32fc1cd296d
