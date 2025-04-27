@@ -1,0 +1,31 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 5600
+
+spring:
+  application:
+    name: Forum
+  config:
+    import: optional:configserver:http://localhost:8888
+
+
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/forum_server?createDatabaseIfNotExist=true
+    username: root
+    password:
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect

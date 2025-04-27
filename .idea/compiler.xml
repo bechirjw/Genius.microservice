@@ -8,10 +8,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
-        <module name="quiz-service" />
-        <module name="user-service" />
         <module name="discovery" />
+        <module name="quiz-service" />
         <module name="gateway" />
+      </profile>
+      <profile name="Annotation profile for notification" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="notification" />
+        <module name="Projet" />
+        <module name="Events" />
+        <module name="Collaboration" />
+        <module name="Forum" />
       </profile>
       <profile name="Annotation profile for post" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -23,21 +35,10 @@
         <module name="post" />
         <module name="comment" />
       </profile>
-      <profile name="Annotation profile for Projet" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-        </processorPath>
-        <module name="notification" />
-        <module name="Projet" />
-        <module name="Events" />
-        <module name="Collaboration" />
-      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="demo" target="17" />
+      <module name="user-service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -45,6 +46,7 @@
       <module name="AI" options="-parameters" />
       <module name="Collaboration" options="-parameters" />
       <module name="Events" options="-parameters" />
+      <module name="Forum" options="-parameters" />
       <module name="Projet" options="-parameters" />
       <module name="comment" options="-parameters" />
       <module name="config-server" options="-parameters" />

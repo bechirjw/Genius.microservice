@@ -7,7 +7,6 @@
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/discovery/pom.xml" />
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
-        <option value="$PROJECT_DIR$/user-service/pom.xml" />
         <option value="$PROJECT_DIR$/demo/pom.xml" />
         <option value="$PROJECT_DIR$/Events/pom.xml" />
         <option value="$PROJECT_DIR$/post/pom.xml" />
@@ -16,6 +15,7 @@
         <option value="$PROJECT_DIR$/Projet/pom.xml" />
         <option value="$PROJECT_DIR$/Collaboration/pom.xml" />
         <option value="$PROJECT_DIR$/notification/pom.xml" />
+        <option value="$PROJECT_DIR$/Forum/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

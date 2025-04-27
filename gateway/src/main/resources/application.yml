@@ -47,12 +47,19 @@ spring:
             - Path=/**
           filters:
             - StripPrefix=0
+        - id: Forum-service
+          uri: lb://Forum
+          predicates:
+            - Path=/api/communities/**
+          filters:
+            - StripPrefix=0
         - id: Events-service
           uri: lb://Events
           predicates:
             - Path=/**
           filters:
             - StripPrefix=0
+
 server:
   port: 8222
 
@@ -60,6 +67,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
 
 
 
