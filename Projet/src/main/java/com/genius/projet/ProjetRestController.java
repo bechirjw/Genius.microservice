@@ -64,11 +64,16 @@ public class ProjetRestController {
 
 
     @GetMapping("/with-collaborations/{projet-id}")
-    public ResponseEntity<FullProjetResponse> findAllProjets(
-            @PathVariable("projet-id") Long projetId
-    ) {
-        return ResponseEntity.ok(projetService.findProjetsWithCollaborations(projetId));
+    public ResponseEntity<?> findAllProjets(@PathVariable("projet-id") Long projetId) {
+        try {
+            FullProjetResponse response = projetService.findProjetsWithCollaborations(projetId);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            e.printStackTrace(); // 🔥 Print error to console
+            return ResponseEntity.status(500).body("Erreur interne: " + e.getMessage());
+        }
     }
+
 
 
 

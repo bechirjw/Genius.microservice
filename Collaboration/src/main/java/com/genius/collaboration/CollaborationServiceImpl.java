@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 
+import javax.management.Notification;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +28,40 @@ public class CollaborationServiceImpl implements ICollaborationService {
         return collaborationRepository.findById(collaborationId).orElse(null);
     }
 
-    public Collaboration addCollaboration(Collaboration c) {
-        return collaborationRepository.save(c);
+//    public Collaboration addCollaboration(Collaboration c) {
+//        return collaborationRepository.save(c);
+//    }
+private void sendNotificationToProjectOwner(Collaboration collaboration) {
+    try {
+        RestTemplate restTemplate = new RestTemplate();
+
+        // Fetch project id and owner id
+        Long projetId = collaboration.getProjetId();
+        Long ownerId = 1L; // 🚨 Make sure your Projet has a getOwnerId()
+
+        // Create notification object
+        NotificationRequest notification = new NotificationRequest();
+        notification.setMessage("A new collaboration request on your project!");
+        notification.setReceiverId(ownerId);
+        notification.setType("NEW_COLLABORATION");
+        notification.setProjetId(projetId);
+
+        // Send notification
+        restTemplate.postForObject("http://localhost:5220/api/notifications/send", notification, Notification.class);
+
+    } catch (Exception e) {
+        System.err.println("Failed to send notification: " + e.getMessage());
     }
+}
+
+    public Collaboration addCollaboration(Collaboration c) {
+    Collaboration savedCollaboration = collaborationRepository.save(c);
+
+    // 🔥 After saving collaboration, send notification
+    sendNotificationToProjectOwner(savedCollaboration);
+
+    return savedCollaboration;
+}
 
     public void removeCollaboration(Long collaborationId) {
         collaborationRepository.deleteById(collaborationId);

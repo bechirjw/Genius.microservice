@@ -11,7 +11,7 @@ import java.util.Date;
 @Builder
 public class Collaboration {
 
-
+    private Long id;             // ✅ important to match entity
     private String role;
     private String statut;
     private Date dateDemande;
