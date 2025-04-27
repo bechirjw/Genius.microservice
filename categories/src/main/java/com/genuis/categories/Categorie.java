@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,4 +34,20 @@ import java.time.LocalDateTime;
     @Lob
     private byte[] image;
 
+    @ElementCollection
+    private Set<Long> likedBy = new HashSet<>();
+
+    // 🔥 Logique de like
+    public void like(Long userId) {
+        if (!likedBy.contains(userId)) {
+            likes++;
+            likedBy.add(userId);
+        }
+    }
+
+
+    public Categorie(String name, String description) {
+        this.nomCategorie = name;
+        this.description = description;
+    }
 }
