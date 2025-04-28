@@ -14,6 +14,8 @@ public interface PostService {
     void deletePost(Long id);  // ✅ Ajout de la méthode de suppression
 
     void generatePostFromCommunityName(String communityName);
+
+    void sendNotificationToPostOwner(Post post);
     // Récupérer tous les posts pour une communauté donnée
 
 }

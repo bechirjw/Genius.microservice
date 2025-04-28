@@ -12,4 +12,6 @@ public interface CommunityService {
     Community getCommunityById(Long id);
     void joinCommunity(Long communityId, User user);
     CommunityWithPostsDTO getCommunityWithPosts(Long communityId);
+    void deleteCommunity(Long communityId);  // ✅ Ajout de la méthode de suppression
+
 }

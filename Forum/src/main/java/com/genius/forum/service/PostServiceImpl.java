@@ -1,5 +1,6 @@
 package com.genius.forum.service;
 
+import com.genius.forum.dto.NotificationRequest;
 import com.genius.forum.dto.PostDTO;
 import com.genius.forum.model.Community;
 import com.genius.forum.model.Post;
@@ -66,12 +67,15 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePost(Long id) {
-        if (postRepository.existsById(id)) {
-            postRepository.deleteById(id);
-        } else {
-            throw new IllegalArgumentException("Post with id " + id + " not found");
-        }
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Post with id " + id + " not found"));
+
+        postRepository.deleteById(id);
+
+        // Envoyer la notification à l'auteur
+        sendNotificationToPostOwner(post);
     }
+
 
     public void generatePostFromCommunityName(String communityName) {
         // Ensure you're passing the community name to the AI API
@@ -81,11 +85,35 @@ public class PostServiceImpl implements PostService {
         // Send the POST request to the external AI service (if necessary)
         restTemplate.postForEntity("http://localhost:5000/generate", requestPayload, String.class);
     }
+    public void sendNotificationToPostOwner(Post post) {
+        try {
+            RestTemplate restTemplate = new RestTemplate();
 
+            // Préparer la notification
+            Map<String, Object> notification = new HashMap<>();
+            notification.put("message", "Votre post a été supprimé car il ne respecte pas les règles de la communauté.");
+            notification.put("receiverId", post.getUserId()); // 🚨 Ton Post doit avoir un getUserId() sinon il faudra l'ajouter
+            notification.put("type", "POST_DELETED");
+            notification.put("postId", post.getId()); // Tu peux aussi envoyer le postId
 
-
+            // Envoyer la notification au microservice notification
+            restTemplate.postForObject(
+                    "http://localhost:5220/api/notifications/send",
+                    notification,
+                    Map.class
+            );
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'envoi de la notification : " + e.getMessage());
+        }
+    }
 
 }
+
+
+
+
+
+
 
 
 

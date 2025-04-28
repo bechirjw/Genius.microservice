@@ -85,6 +85,7 @@ public class CommunityController {
     }
 
 
+
     @PostMapping("/generate/{communityId}")
     public ResponseEntity<?> generatePost(@PathVariable Long communityId) {
         Community community = communityRepository.findById(communityId)
@@ -107,6 +108,28 @@ public class CommunityController {
 
         return ResponseEntity.ok(post);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCommunity(@PathVariable Long id) {
+        communityService.deleteCommunity(id);
+        return ResponseEntity.noContent().build(); // 204 No Content
+    }
+    @PostMapping("/posts/{postId}/report")
+    public ResponseEntity<Void> reportPost(@PathVariable Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post not found"));
+
+        post.setReported(true); // Marque le post comme signalé
+        postRepository.save(post);
+
+        return ResponseEntity.ok().build(); // Réponse vide en cas de succès
+    }
+    // CommunityController.java
+    @GetMapping("/posts/reported")
+    public ResponseEntity<List<Post>> getReportedPosts() {
+        List<Post> reportedPosts = postRepository.findByIsReportedTrue(); // Récupère tous les posts signalés
+        return ResponseEntity.ok(reportedPosts);
+    }
+
 
 
 

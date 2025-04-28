@@ -24,7 +24,8 @@ public class Post {
 
     private String userName;   // 👈 à ajouter
     private String userImage;  // 👈 à ajouter
-
+    private boolean isReported = false;  // Nouveau champ pour signaler un post
+    private Long userId;
     @ManyToOne
     private Community community;
 }

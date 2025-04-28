@@ -53,9 +53,10 @@ public class AuthentificationService {
                 .build();
 
         userRepository.save(user);
-        sendValidationEmail(user);
+        //asendValidationEmail(user);
 
         var claims = new HashMap<String, Object>();
+        claims.put("id", user.getIdUser());
         claims.put("fullName", user.fullName());
         claims.put("role", user.getRoles().name());
 
@@ -120,6 +121,7 @@ public class AuthentificationService {
 
         var claims = new HashMap<String, Object>();
         var user = ((User)auth.getPrincipal());
+        claims.put("id", user.getIdUser());
         claims.put("fullName", user.fullName());
         claims.put("role", user.getRoles().name());  // On récupère le nom du rôle (ADMIN, ENTREPRENEUR, etc.)
         Date now = new Date();

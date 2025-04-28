@@ -78,7 +78,11 @@ public class CommunityServiceImpl implements CommunityService {
 
                         "Alice", // ou récupère dynamiquement post.getUser().getName()
                         "https://img.freepik.com/photos-gratuite/jeune-belle-fille-posant-dans-veste-cuir-noire-parc_1153-8104.jpg?semt=ais_hybrid&w=740",
-                        post.getCreatedAt()
+                        post.getCreatedAt(),
+                        post.isReported(),
+                        post.getUserId()
+
+
                 ))
                 .collect(Collectors.toList());
 
@@ -91,6 +95,17 @@ public class CommunityServiceImpl implements CommunityService {
                 community.getImageUrl(),
                 postDTOs
         );    }
+
+    @Override
+
+    public void deleteCommunity(Long communityId) {
+        // Supprimer les posts associés à cette communauté
+        List<Post> posts = postRepository.findByCommunityId(communityId);
+        postRepository.deleteAll(posts);
+
+        // Supprimer la communauté elle-même
+        communityRepository.deleteById(communityId);
+    }
 }
 
 
