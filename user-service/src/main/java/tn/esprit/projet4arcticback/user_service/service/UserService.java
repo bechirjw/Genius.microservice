@@ -120,7 +120,36 @@ public class UserService {
     }
 
     // 🔍 Recherche par nom, prénom, email
+    @Transactional
+    public void banUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+        user.setAccountLocked(true); // ⚡ attention, `accountLocked` est un boolean
+        userRepository.save(user);
+    }
 
+    @Transactional
+    public void changeUserRole(Long id, String role) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+
+        try {
+            Role newRole = Role.valueOf(role); // Convertit la string en Enum
+            user.setRoles(newRole); //
+
+            userRepository.save(user);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid role: " + role);
+        }
+    }
+    @Transactional
+    public void unbanUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+
+        user.setAccountLocked(false); // ✅ Remet account_locked = 0
+        userRepository.save(user);
+    }
 
 
 }

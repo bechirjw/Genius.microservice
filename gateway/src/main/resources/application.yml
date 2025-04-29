@@ -44,7 +44,7 @@ spring:
         - id: projets-service
           uri: lb://projets
           predicates:
-            - Path=/**
+            - Path=/projet/**, /tache/**
           filters:
             - StripPrefix=0
         - id: Forum-service
@@ -57,6 +57,12 @@ spring:
           uri: lb://categories
           predicates:
             - Path=/categorie/**
+          filters:
+            - StripPrefix=1
+        - id: stage-service
+          uri: lb://stage-service
+          predicates:
+            - Path=/stages/**
           filters:
             - StripPrefix=1
         - id: Events-service

@@ -12,7 +12,9 @@ import com.genius.quizservice.entity.Test;
 import com.genius.quizservice.entity.TestResult;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -130,17 +132,21 @@ public class TestServiceImpl implements TestService {
             testResult.setTotalQuestions(totalQuestions);
             testResult.setCorrectAnswers(correctAnswers);
             testResult.setPercentage(percentage);
+            testResult.setFullName(request.getFullName()); // ✅ TRÈS IMPORTANT
+            testResult.setEmail(request.getEmail()); // ✅ Très important ici
+
+
 
             // Save to DB and return the DTO
             TestResult savedTestResult = testResultRepository.save(testResult);
             System.out.println("Test Result Saved: " + savedTestResult);
-            //Send email after the test is submitted
-            String recipientEmail = "yayay9676@gmail.com";  // Replace with the actual user email
+            // ➡️ Email dynamique
+            String recipientEmail = request.getEmail();
             String subject = "Quiz Submission Result";
-            String body = "Congratulations, your quiz has been submitted successfully! You scored: " + percentage + "%";
+            String body = "Congratulations " + request.getFullName() + ", your quiz has been submitted successfully! You scored: " + percentage + "%";
 
-            // Send email notification
-            emailService.sendEmail(recipientEmail, subject, body);
+// Send email notification
+            emailService.sendQuizResultEmail(request.getEmail(), request.getFullName(), test.getTitle(), percentage);
 
 
             return savedTestResult.getDto();
@@ -152,8 +158,9 @@ public class TestServiceImpl implements TestService {
         }
     }
 
-    public List<TestResultDTO> getAllTestResults() {
+    public List<TestResultDTO> getAllTestResults(String fullName) {
         return testResultRepository.findAll().stream()
+                .filter(tr -> tr.getFullName() != null && tr.getFullName().equals(fullName))
                 .map(TestResult::getDto)
                 .collect(Collectors.toList());
     }
@@ -168,6 +175,21 @@ public class TestServiceImpl implements TestService {
         }
     }
 
+
+    public Map<String, Integer> getGlobalStatistics() {
+        int totalCorrectAnswers = testResultRepository.sumCorrectAnswers();
+        int totalWrongAnswers = testResultRepository.sumWrongAnswers();
+        int totalTests = (int) testRepository.count(); // ➡️ ajouter nombre de tests
+        int totalResponses = totalCorrectAnswers + totalWrongAnswers; // ➡️ total réponses
+
+        Map<String, Integer> statistics = new HashMap<>();
+        statistics.put("correctAnswers", totalCorrectAnswers);
+        statistics.put("wrongAnswers", totalWrongAnswers);
+        statistics.put("totalTests", totalTests);
+        statistics.put("totalResponses", totalResponses);
+
+        return statistics;
+    }
 
 
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class SubmitTestDTO {
     private long testId;
-    private Long userId; // ✅ NEW: passed from frontend
+    private String email;   // ✅ ➔ Ajout de l'email
+    private String fullName; // ✅ Ajouté le champ fullName
     private List<QuestionResponse> responses;
 }

@@ -2,6 +2,7 @@ package com.genius.quizservice.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.genius.quizservice.dto.TestResultDTO;
 import com.genius.quizservice.dto.testDTO;
 import com.genius.quizservice.service.AIQuestionGeneratorService;
 import jakarta.persistence.EntityNotFoundException;
@@ -75,14 +76,13 @@ public class TestController {
     }
 
     @GetMapping("/test-result")
-    public ResponseEntity<?> getAllTestResults() {
+    public ResponseEntity<?> getAllTestResults(@RequestParam String fullName) {
         try {
-            return new ResponseEntity<>(testService.getAllTestResults(), HttpStatus.OK);
+            List<TestResultDTO> userResults = testService.getAllTestResults(fullName);
+            return new ResponseEntity<>(userResults, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
-
     }
         @DeleteMapping("/test/{id}")
         public ResponseEntity<?> deleteTest(@PathVariable Long id) {
@@ -119,6 +119,16 @@ public class TestController {
         String userServiceUrl = "http://localhost:5300/api/users/ping"; // user-service local
         return restTemplate.getForObject(userServiceUrl, String.class);
     }
+
+    @GetMapping("/admin/statistics")
+    public ResponseEntity<?> getQuizStatistics() {
+        try {
+            return new ResponseEntity<>(testService.getGlobalStatistics(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 
 

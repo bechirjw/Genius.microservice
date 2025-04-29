@@ -26,7 +26,7 @@ def extract_text_from_pdf(pdf_path):
 text = extract_text_from_pdf(pdf_path)
 
 
-api_key = "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"
+api_key = "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"
 def get_mistral_response(prompt, api_key):
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {

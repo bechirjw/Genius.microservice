@@ -44,5 +44,36 @@ public class UserController {
     public ResponseEntity<User> changeRole(@PathVariable Long id, @RequestBody Role newRole) {
         return ResponseEntity.ok(userservice.changeRole(id, newRole));
     }
+    @PatchMapping("/ban/{id}")
+    public ResponseEntity<?> banUser(@PathVariable Long id) {
+        try {
+            userservice.banUser(id);
+            return ResponseEntity.ok("User account locked successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PatchMapping("/change-role/{id}")
+    public ResponseEntity<?> changeUserRole(@PathVariable Long id, @RequestParam String role)
+    {
+        try {
+            userservice.changeUserRole(id, role);
+            return ResponseEntity.ok("User role changed successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @PatchMapping("/unban/{id}")
+    public ResponseEntity<?> unbanUser(@PathVariable Long id) {
+        try {
+            userservice.unbanUser(id);
+            return ResponseEntity.ok("User account unlocked successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
 
 }

@@ -37,7 +37,7 @@ public class MindmapController {
             // Lancer le script Python
             ProcessBuilder builder = new ProcessBuilder(
                     "python",
-                    "C:\\Users\\bechi\\IdeaProjects\\Genuis_microServices\\ressources\\scripts\\generate_mindmap.py",
+                    "D:\\Pi-dev\\gitquiz\\Genius.microservice\\ressources\\scripts\\generate_mindmap.py",
                     pdfFile.getAbsolutePath()
             );
             builder.redirectErrorStream(true);

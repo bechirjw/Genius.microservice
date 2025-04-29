@@ -11,4 +11,6 @@ public class TestResultDTO {
     private int correctAnswers;
     private double percentage;
     private String testName;
+    private String fullName;
+
 }

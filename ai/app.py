@@ -4,7 +4,7 @@ import re
 
 app = Flask(__name__)
 
-openai.api_key = "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"
+openai.api_key = "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"
 @app.route("/generate-questions", methods=["POST"])
 def generate_questions():
     description = request.json.get("description", "").strip()

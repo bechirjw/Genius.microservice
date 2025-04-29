@@ -1,63 +1,27 @@
-Automatisation:
-  Automation in Purpose:
-    DevOps:
-      ' Tools':
-        Build Management:
-          Role: Storage and management of artifacts
-          Tools:
-          - Nexus Repository
-          - JFrog Artifactory
-          - Docker Hub
-        Code Control and Collaboration:
-          Role: Management of the source code and tracking of changes
-          Tools:
-          - GitHub
-          - GitLab
-          - SVN
-        Containerization:
-          Role: Ensuring application reproducibility and coherence
-        Deploy and Operate:
-          Role: Management of infrastructure as code
-          Tools:
-          - Ansible
-          - Terraform
-          - Chef
-          - Puppet
-        Integration:
-          Role: Automation of the process of compilation, tests, and deployment
-          Tools:
-          - Jenkins
-          - GitLab CI/CD
-          - CircleCI
-          - Travis CI
-          - Azure Pipelines
-        Planning and Project Management:
-          Role: Management of tasks and backlogs
-          Tools:
-          - Jira
-          - Trello
-          - Asana
-          - Azure DevOps Boards
-        Testing:
-          Role: Automation of unit, functional, performance, and security tests
-          Tools:
-          - Selenium
-          - JUnit
-          - TestNG
-          - Postman
-          - Cypress
-      Definition: The combination of cultural philosophies, practices, and tools that
-        increase an organization’s ability to deliver applications and services at
-        high velocity
-  Computer Automation:
-    Business Automation:
-      Definition: Aligning business process and business rules management with the
-        development of modern applications
-    Definition: Use of a system of instructions to automate repetitive processes on
-      computer systems
-  Definition: Use of technologies to perform tasks without human intervention
-  Sectors:
-  - Manufacturing
-  - Robotics
-  - Vehicle control
-  - etc.
+Système informatique:
+  Abstraits:
+    Composants:
+    - GestionUtilisateur
+  Concrètes:
+    Artifact:
+    - admin.exe
+    - user.exe
+    - myApplication.apk
+    - classes.dex
+    - resources.arsc
+    - AndroidManifest.xml
+    Fichiers:
+      Ressources:
+      - res/
+  Environnements d'exécution:
+    Android: []
+  Equipements physiques actifs:
+    Systèmes:
+    - Serveur
+    - Console
+    - Kiosque
+    Unités de stockage:
+    - Tour RAID
+  Relations:
+    Représentation:
+    - manifest
