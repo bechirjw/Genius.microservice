@@ -23,7 +23,8 @@ public interface ICategorieService {
     Categorie addCategorieWithImage(String nomCategorie, MultipartFile image) throws IOException;
     CategorieDTO retrieveCategorieWithImage(Long idCategorie);
 
-    Categorie updateLikes(Long idCategorie, Integer likes);
-     void likeCategorie(Long categorieId, Long userId);
+   // Categorie updateLikes(Long idCategorie, Integer likes);
+   public void likeCategorie(Long categorieId, Long userId) ;
 
-}
+
+   }

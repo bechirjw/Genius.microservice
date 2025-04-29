@@ -21,7 +21,7 @@ import java.util.Set;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long idCategorie;
 
-
+        private Long idUser;
         private Integer likes =0;
 
 
@@ -34,15 +34,21 @@ import java.util.Set;
     @Lob
     private byte[] image;
 
+
     @ElementCollection
+    @CollectionTable(name = "categorie_likes", joinColumns = @JoinColumn(name = "categorie_id"))
+    @Column(name = "user_id")
     private Set<Long> likedBy = new HashSet<>();
 
-    // 🔥 Logique de like
     public void like(Long userId) {
         if (!likedBy.contains(userId)) {
             likes++;
             likedBy.add(userId);
         }
+    }
+
+    public boolean hasUserLiked(Long userId) {
+        return likedBy.contains(userId);
     }
 
 

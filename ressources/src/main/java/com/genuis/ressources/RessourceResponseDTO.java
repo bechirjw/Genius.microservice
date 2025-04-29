@@ -22,7 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 public class RessourceResponseDTO {
     private long idCategorie;
-
+    private Long idUser;
     private Long id;
     private String titre;
     private String description;

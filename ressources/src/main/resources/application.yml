@@ -13,7 +13,19 @@ spring:
     name: ressources  # Nom de l'application Spring Boot
   config:
     import: optional:configserver:http://localhost:8888  # Importation optionnelle de la configuration depuis le serveur de configuration
-
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: roudainagmati11@gmail.com
+    password: mfjz fvtz yhlo zows
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    default-encoding: UTF-8
   datasource:
     url: jdbc:mysql://localhost:3306/ressources?createDatabaseIfNotExist=true
     username: root
@@ -39,3 +51,9 @@ stripe:
   webhook:
     secret:
       key: whsec_595d0e5ec5a7ff2da8c705a9edd4ac10dfdb28d7d0efefbbcd39d32fc1cd296d
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+      hibernate: INFO

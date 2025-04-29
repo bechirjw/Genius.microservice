@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Setter
 public class CategorieDTO {
     private Long idCategorie;
-
+    private Long idUser;
     private String nomCategorie;
     private String domaine;
     private String description;

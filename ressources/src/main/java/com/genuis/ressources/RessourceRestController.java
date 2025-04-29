@@ -30,16 +30,24 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/ressources")
 
+
 //@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 
 public class RessourceRestController {
     private static final Logger logger = LoggerFactory.getLogger(RessourceRestController.class);
     @Autowired
     private IRessourceService ressourceService;
+
+
+    private RatingRepository ratingRepository;
+
+
+    private  AchatRepository achatRepository;
+
     //  @PostMapping("/{idCategorie}/ajout-ressource/user/{idUser}")
     // public ResponseEntity<?> addRessourceWithFiles(@PathParam("idUser") Long idUser,
     @PostMapping("/{idCategorie}/ajout-ressource")
-    public ResponseEntity<?> addRessourceWithFiles(//@PathParam("idUser") Long idUser,
+    public ResponseEntity<?> addRessourceWithFiles(@PathParam("idUser") Long idUser,
                                                    @PathVariable("idCategorie") Long idCategorie,
                                                    @RequestParam("titre") String titre,
                                                    @RequestParam("description") String description,
@@ -59,7 +67,7 @@ public class RessourceRestController {
             ressource.setDescription(description);
             ressource.setIdCategorie(idCategorie);
             ressource.setType(type);
-            //  ressource.setIduser(idUser);
+            ressource.setIduser(idUser);
 
 
             // Définir le statut
@@ -221,6 +229,7 @@ public class RessourceRestController {
 
         // Créer le DTO de réponse
         com.genuis.ressources.RessourceResponseDTO dto = new com.genuis.ressources.RessourceResponseDTO();
+        dto.setIdUser(ressource.getIduser());
         dto.setIdCategorie(ressource.getIdCategorie());
         dto.setId(ressource.getIdRessource());
         dto.setTitre(ressource.getTitre());
@@ -257,6 +266,7 @@ public class RessourceRestController {
 
             // Mapper ressource en DTO
             RessourceResponseDTO dto = new RessourceResponseDTO();
+            dto.setIdUser(ressource.getIduser());
             dto.setId(ressource.getIdRessource());
             dto.setTitre(ressource.getTitre());
             dto.setDescription(ressource.getDescription());
@@ -295,5 +305,45 @@ public class RessourceRestController {
         return ResponseEntity.ok(ressourceService.retrieveAllRessourcesByCategories(idCategorie));
     }
 
+    @GetMapping("/resource-stats")
+    public ResponseEntity<Map<String, Object>> getResourceStatistics() {
+
+        Map<String, Object> data = new HashMap<>();
+
+        // Récupérer toutes les ressources
+        List<Ressource> ressources = ressourceService.getAllRessources();
+
+        // Créer des listes vides pour les statistiques
+
+        List<Long> nbAchat = new ArrayList<>();
+        List<Double> ratingsAverage = new ArrayList<>(); // Liste pour les moyennes des évaluations
+        List<Integer> comments = new ArrayList<>();
+        List<String> labels = new ArrayList<>();
+
+        // Remplir les listes avec des données fictives ou réelles
+        for (Ressource ressource : ressources) {
+            long commentCount = ratingRepository.countByResourceIdAndCommentIsNotNull(ressource.getIdRessource());
+            Double averageRating = ratingRepository.findAverageRatingByResourceId(ressource.getIdRessource());
+            Long achatCount = achatRepository.countAchatByRessourceId(ressource.getIdRessource());
+
+            // Utilisez des valeurs réelles ou générées dynamiquement pour les vues, likes et commentaires
+            // Ici, ce sont des valeurs statiques pour l'exemple, mais vous pourriez récupérer ces données d'une autre source
+            ratingsAverage.add(averageRating != null ? averageRating : 0.0); // Ajouter la moyenne des évaluations
+            nbAchat.add(achatCount);
+
+            comments.add((int) commentCount); // Nombre réel de commentaires
+
+            // Ajouter le titre de la ressource à la liste des labels
+            labels.add(ressource.getTitre());
+        }
+
+        // Ajouter les données dans la réponse
+        data.put("Fréquence d'achat", nbAchat);      // Vues
+        data.put("Evaluation", ratingsAverage);      // Likes
+        data.put("comments", comments); // Commentaires
+        data.put("labels", labels);    // Titres des ressources
+
+        return ResponseEntity.ok(data);
+    }
 
 }
