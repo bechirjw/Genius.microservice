@@ -1,7 +1,9 @@
 //http://localhost:8089/backend/swagger-ui/index.html#/Gestion%20des%20Ressources/getRessources
 package com.genuis.categories;
+import jakarta.persistence.EntityNotFoundException;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -132,13 +134,7 @@ private CategorieDTO convertToDto(Categorie categorie) {
 
 
 
-    @Operation(description = "Mettre à jour le nombre de likes d'une catégorie")
-    @PutMapping("/update-likes/{categorie-id}")
-    public ResponseEntity<Categorie> updateLikes(@PathVariable("categorie-id") Long idCategorie,
-                                                 @RequestParam("likes") Integer likes) {
-        Categorie updatedCategorie = categorieService.updateLikes(idCategorie, likes);
-        return ResponseEntity.ok(updatedCategorie);
-    }
+
     @Operation(description = "Récupérer une catégorie par son ID avec son image encodée en Base64")
     @GetMapping("/retrieve-categorie-with-image/{categorie-id}")
     public ResponseEntity<CategorieDTO> retrieveCategorieWithImage(@PathVariable("categorie-id") Long idCategorie) {
@@ -158,6 +154,7 @@ private CategorieDTO convertToDto(Categorie categorie) {
     @PostMapping(value = "/add-categorie-with-image", consumes = "multipart/form-data")
     @CacheEvict(value = "categoriesCache", allEntries = true) // Vide le cache des catégories après l'ajout
     public ResponseEntity<Categorie> addCategorieWithImage(
+            @RequestParam("idUser") Long idUser,
             @RequestParam("nomCategorie") String nomCategorie,
             @RequestParam("domaine") String domaine,
             @RequestParam("description") String description,
@@ -189,7 +186,7 @@ private CategorieDTO convertToDto(Categorie categorie) {
             categorie.setDomaine(domaine);
             categorie.setDescription(description);
             categorie.setImage(imageBytes);  // Stocker les bytes de l’image
-
+            categorie.setIdUser(idUser);
             // Sauvegarde en base de données
             categorieService.addCategorie(categorie);
 
@@ -223,9 +220,23 @@ private CategorieDTO convertToDto(Categorie categorie) {
         return ResponseEntity.ok(favoris);
     }
 
-    // Like une catégorie
     @PostMapping("/{categorieId}/like")
-    public void likeCategorie(@PathVariable Long categorieId, @RequestParam Long userId) {
-        categorieService.likeCategorie(categorieId, userId);
+    public ResponseEntity<?> likeCategorie(
+            @PathVariable Long categorieId,
+            @RequestParam Long userId) {
+        try {
+            categorieService.likeCategorie(categorieId, userId);
+            return ResponseEntity.ok().build();
+        } catch (IllegalStateException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Vous avez déjà liké cette catégorie");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+
     }
+
+
 }

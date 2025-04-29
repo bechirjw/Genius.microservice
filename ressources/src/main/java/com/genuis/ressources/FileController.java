@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 @RequestMapping("/uploads")
 public class FileController {
 
-    private final Path uploadDir = Paths.get("C:/Users/bechi/IdeaProjects/Genuis_microServices/uploads");
+    private final Path uploadDir = Paths.get("C:/Users/bechi/Desktop/integ/Genius.microservice/uploads");
 
     @GetMapping("/{filename:.+}")
     public ResponseEntity<Resource> getFile(@PathVariable String filename) {

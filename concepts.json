@@ -1,81 +1,44 @@
 {
-  "Automatisation": {
-    "Definition": "Use of technologies to perform tasks without human intervention",
-    "Sectors": [
-      "Manufacturing",
-      "Robotics",
-      "Vehicle control",
-      "etc."
-    ],
-    "Computer Automation": {
-      "Definition": "Use of a system of instructions to automate repetitive processes on computer systems",
-      "Business Automation": {
-        "Definition": "Aligning business process and business rules management with the development of modern applications"
-      }
-    },
-    "Automation in Purpose": {
-      "DevOps": {
-        "Definition": "The combination of cultural philosophies, practices, and tools that increase an organization\u2019s ability to deliver applications and services at high velocity",
-        " Tools": {
-          "Integration": {
-            "Role": "Automation of the process of compilation, tests, and deployment",
-            "Tools": [
-              "Jenkins",
-              "GitLab CI/CD",
-              "CircleCI",
-              "Travis CI",
-              "Azure Pipelines"
-            ]
-          },
-          "Planning and Project Management": {
-            "Role": "Management of tasks and backlogs",
-            "Tools": [
-              "Jira",
-              "Trello",
-              "Asana",
-              "Azure DevOps Boards"
-            ]
-          },
-          "Code Control and Collaboration": {
-            "Role": "Management of the source code and tracking of changes",
-            "Tools": [
-              "GitHub",
-              "GitLab",
-              "SVN"
-            ]
-          },
-          "Build Management": {
-            "Role": "Storage and management of artifacts",
-            "Tools": [
-              "Nexus Repository",
-              "JFrog Artifactory",
-              "Docker Hub"
-            ]
-          },
-          "Testing": {
-            "Role": "Automation of unit, functional, performance, and security tests",
-            "Tools": [
-              "Selenium",
-              "JUnit",
-              "TestNG",
-              "Postman",
-              "Cypress"
-            ]
-          },
-          "Deploy and Operate": {
-            "Role": "Management of infrastructure as code",
-            "Tools": [
-              "Ansible",
-              "Terraform",
-              "Chef",
-              "Puppet"
-            ]
-          },
-          "Containerization": {
-            "Role": "Ensuring application reproducibility and coherence"
-          }
-        }
-      }
+  "Gestion de la base de donn\u00e9es": {
+    "CRUD": {
+      "Affectation": [
+        "CreateBlocWITHFoyer"
+      ],
+      "D\u00e9saffectation": [
+        "desaffecterBlocFromFoyer"
+      ],
+      "Mise \u00e0 jour": [
+        "desaassignBlocFromFoyer"
+      ]
     }
+  },
+  "Obter les donn\u00e9es": {
+    "R\u00e9cup\u00e9ration": [
+      "blocRepository.findById(idBloc).get()"
+    ],
+    "Modification": [
+      "bloc.setFoyer(null)"
+    ]
+  },
+  "Enregistrer les donn\u00e9es": {
+    "Mise \u00e0 jour": [
+      "BlocRepository.save(bloc)"
+    ]
+  },
+  "URL": {
+    "Affectation": [
+      "http://localhost:8089/tpfoyer/bloc/create"
+    ],
+    "D\u00e9saffectation": [
+      "http://localhost:8089/tpfoyer/bloc/desaffecter-bloc-foyer/1"
+    ]
+  },
+  "M\u00e9thode HTTP": {
+    "Ressource": [
+      "Bloc"
+    ],
+    "Type de requ\u00eate": [
+      "PUT"
+    ]
   }
 }

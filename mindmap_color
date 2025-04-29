@@ -2,144 +2,56 @@
 digraph {
 	rankdir=LR
 	root [label=Mindmap color="#DAA520" fillcolor="#FFD700" shape=star style=filled]
-	root_Automatisation [label=<<B>Automatisation</B>> color="#1f77b4" fillcolor="#1f77b433" shape=box style=filled]
-	root -> root_Automatisation
-	root_Automatisation_Definition [label=<<B>Definition</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
-	root_Automatisation -> root_Automatisation_Definition
-	root_Automatisation_Definition_Use_of_technologies_to_perform_tasks_without_human_intervention [label="Use of technologies to perform tasks without human intervention" color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
-	root_Automatisation_Definition -> root_Automatisation_Definition_Use_of_technologies_to_perform_tasks_without_human_intervention
-	root_Automatisation_Sectors [label=<<B>Sectors</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
-	root_Automatisation -> root_Automatisation_Sectors
-	root_Automatisation_Sectors_item0 [label=Manufacturing color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
-	root_Automatisation_Sectors -> root_Automatisation_Sectors_item0
-	root_Automatisation_Sectors_item1 [label=Robotics color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
-	root_Automatisation_Sectors -> root_Automatisation_Sectors_item1
-	root_Automatisation_Sectors_item2 [label="Vehicle control" color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
-	root_Automatisation_Sectors -> root_Automatisation_Sectors_item2
-	root_Automatisation_Sectors_item3 [label="etc." color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
-	root_Automatisation_Sectors -> root_Automatisation_Sectors_item3
-	root_Automatisation_Computer_Automation [label=<<B>Computer Automation</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
-	root_Automatisation -> root_Automatisation_Computer_Automation
-	root_Automatisation_Computer_Automation_Definition [label=<<B>Definition</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	root_Automatisation_Computer_Automation -> root_Automatisation_Computer_Automation_Definition
-	root_Automatisation_Computer_Automation_Definition_Use_of_a_system_of_instructions_to_automate_repetitive_processes_on_computer_systems [label="Use of a system of instructions to automate repetitive processes on computer systems" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	root_Automatisation_Computer_Automation_Definition -> root_Automatisation_Computer_Automation_Definition_Use_of_a_system_of_instructions_to_automate_repetitive_processes_on_computer_systems
-	root_Automatisation_Computer_Automation_Business_Automation [label=<<B>Business Automation</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	root_Automatisation_Computer_Automation -> root_Automatisation_Computer_Automation_Business_Automation
-	root_Automatisation_Computer_Automation_Business_Automation_Definition [label=<<B>Definition</B>> color="#d62728" fillcolor="#d6272833" shape=box style=filled]
-	root_Automatisation_Computer_Automation_Business_Automation -> root_Automatisation_Computer_Automation_Business_Automation_Definition
-	root_Automatisation_Computer_Automation_Business_Automation_Definition_Aligning_business_process_and_business_rules_management_with_the_development_of_modern_applications [label="Aligning business process and business rules management with the development of modern applications" color="#9467bd" fillcolor="#9467bd33" shape=ellipse style=filled]
-	root_Automatisation_Computer_Automation_Business_Automation_Definition -> root_Automatisation_Computer_Automation_Business_Automation_Definition_Aligning_business_process_and_business_rules_management_with_the_development_of_modern_applications
-	root_Automatisation_Automation_in_Purpose [label=<<B>Automation in Purpose</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
-	root_Automatisation -> root_Automatisation_Automation_in_Purpose
-	root_Automatisation_Automation_in_Purpose_DevOps [label=<<B>DevOps</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose -> root_Automatisation_Automation_in_Purpose_DevOps
-	root_Automatisation_Automation_in_Purpose_DevOps_Definition [label=<<B>Definition</B>> color="#d62728" fillcolor="#d6272833" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps -> root_Automatisation_Automation_in_Purpose_DevOps_Definition
-	"root_Automatisation_Automation_in_Purpose_DevOps_Definition_The_combination_of_cultural_philosophies,_practices,_and_tools_that_increase_an_organization’s_ability_to_deliver_applications_and_services_at_high_velocity" [label="The combination of cultural philosophies, practices, and tools that increase an organization’s ability to deliver applications and services at high velocity" color="#9467bd" fillcolor="#9467bd33" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps_Definition -> "root_Automatisation_Automation_in_Purpose_DevOps_Definition_The_combination_of_cultural_philosophies,_practices,_and_tools_that_increase_an_organization’s_ability_to_deliver_applications_and_services_at_high_velocity"
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools [label=<<B> Tools</B>> color="#d62728" fillcolor="#d6272833" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps -> root_Automatisation_Automation_in_Purpose_DevOps__Tools
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration [label=<<B>Integration</B>> color="#9467bd" fillcolor="#9467bd33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Role [label=<<B>Role</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Role
-	"root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Role_Automation_of_the_process_of_compilation,_tests,_and_deployment" [label="Automation of the process of compilation, tests, and deployment" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Role -> "root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Role_Automation_of_the_process_of_compilation,_tests,_and_deployment"
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools [label=<<B>Tools</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item0 [label=Jenkins color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item0
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item1 [label="GitLab CI/CD" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item1
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item2 [label=CircleCI color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item2
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item3 [label="Travis CI" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item3
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item4 [label="Azure Pipelines" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Integration_Tools_item4
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management [label=<<B>Planning and Project Management</B>> color="#9467bd" fillcolor="#9467bd33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Role [label=<<B>Role</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Role
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Role_Management_of_tasks_and_backlogs [label="Management of tasks and backlogs" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Role -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Role_Management_of_tasks_and_backlogs
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools [label=<<B>Tools</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools_item0 [label=Jira color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools_item0
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools_item1 [label=Trello color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools_item1
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools_item2 [label=Asana color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools_item2
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools_item3 [label="Azure DevOps Boards" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Planning_and_Project_Management_Tools_item3
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration [label=<<B>Code Control and Collaboration</B>> color="#9467bd" fillcolor="#9467bd33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Role [label=<<B>Role</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Role
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Role_Management_of_the_source_code_and_tracking_of_changes [label="Management of the source code and tracking of changes" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Role -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Role_Management_of_the_source_code_and_tracking_of_changes
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools [label=<<B>Tools</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools_item0 [label=GitHub color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools_item0
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools_item1 [label=GitLab color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools_item1
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools_item2 [label=SVN color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Code_Control_and_Collaboration_Tools_item2
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management [label=<<B>Build Management</B>> color="#9467bd" fillcolor="#9467bd33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Role [label=<<B>Role</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Role
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Role_Storage_and_management_of_artifacts [label="Storage and management of artifacts" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Role -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Role_Storage_and_management_of_artifacts
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools [label=<<B>Tools</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools_item0 [label="Nexus Repository" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools_item0
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools_item1 [label="JFrog Artifactory" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools_item1
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools_item2 [label="Docker Hub" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Build_Management_Tools_item2
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing [label=<<B>Testing</B>> color="#9467bd" fillcolor="#9467bd33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Role [label=<<B>Role</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Role
-	"root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Role_Automation_of_unit,_functional,_performance,_and_security_tests" [label="Automation of unit, functional, performance, and security tests" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Role -> "root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Role_Automation_of_unit,_functional,_performance,_and_security_tests"
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools [label=<<B>Tools</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item0 [label=Selenium color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item0
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item1 [label=JUnit color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item1
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item2 [label=TestNG color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item2
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item3 [label=Postman color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item3
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item4 [label=Cypress color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Testing_Tools_item4
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate [label=<<B>Deploy and Operate</B>> color="#9467bd" fillcolor="#9467bd33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Role [label=<<B>Role</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Role
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Role_Management_of_infrastructure_as_code [label="Management of infrastructure as code" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Role -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Role_Management_of_infrastructure_as_code
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools [label=<<B>Tools</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools_item0 [label=Ansible color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools_item0
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools_item1 [label=Terraform color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools_item1
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools_item2 [label=Chef color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools_item2
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools_item3 [label=Puppet color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Deploy_and_Operate_Tools_item3
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Containerization [label=<<B>Containerization</B>> color="#9467bd" fillcolor="#9467bd33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Containerization
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Containerization_Role [label=<<B>Role</B>> color="#8c564b" fillcolor="#8c564b33" shape=box style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Containerization -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Containerization_Role
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Containerization_Role_Ensuring_application_reproducibility_and_coherence [label="Ensuring application reproducibility and coherence" color="#e377c2" fillcolor="#e377c233" shape=ellipse style=filled]
-	root_Automatisation_Automation_in_Purpose_DevOps__Tools_Containerization_Role -> root_Automatisation_Automation_in_Purpose_DevOps__Tools_Containerization_Role_Ensuring_application_reproducibility_and_coherence
+	"root_Gestion_de_la_base_de_données" [label=<<B>Gestion de la base de données</B>> color="#1f77b4" fillcolor="#1f77b433" shape=box style=filled]
+	root -> "root_Gestion_de_la_base_de_données"
+	"root_Gestion_de_la_base_de_données_CRUD" [label=<<B>CRUD</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	"root_Gestion_de_la_base_de_données" -> "root_Gestion_de_la_base_de_données_CRUD"
+	"root_Gestion_de_la_base_de_données_CRUD_Affectation" [label=<<B>Affectation</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	"root_Gestion_de_la_base_de_données_CRUD" -> "root_Gestion_de_la_base_de_données_CRUD_Affectation"
+	"root_Gestion_de_la_base_de_données_CRUD_Affectation_item0" [label=CreateBlocWITHFoyer color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	"root_Gestion_de_la_base_de_données_CRUD_Affectation" -> "root_Gestion_de_la_base_de_données_CRUD_Affectation_item0"
+	"root_Gestion_de_la_base_de_données_CRUD_Désaffectation" [label=<<B>Désaffectation</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	"root_Gestion_de_la_base_de_données_CRUD" -> "root_Gestion_de_la_base_de_données_CRUD_Désaffectation"
+	"root_Gestion_de_la_base_de_données_CRUD_Désaffectation_item0" [label=desaffecterBlocFromFoyer color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	"root_Gestion_de_la_base_de_données_CRUD_Désaffectation" -> "root_Gestion_de_la_base_de_données_CRUD_Désaffectation_item0"
+	"root_Gestion_de_la_base_de_données_CRUD_Mise_à_jour" [label=<<B>Mise à jour</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	"root_Gestion_de_la_base_de_données_CRUD" -> "root_Gestion_de_la_base_de_données_CRUD_Mise_à_jour"
+	"root_Gestion_de_la_base_de_données_CRUD_Mise_à_jour_item0" [label=desaassignBlocFromFoyer color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	"root_Gestion_de_la_base_de_données_CRUD_Mise_à_jour" -> "root_Gestion_de_la_base_de_données_CRUD_Mise_à_jour_item0"
+	"root_Obter_les_données" [label=<<B>Obter les données</B>> color="#1f77b4" fillcolor="#1f77b433" shape=box style=filled]
+	root -> "root_Obter_les_données"
+	"root_Obter_les_données_Récupération" [label=<<B>Récupération</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	"root_Obter_les_données" -> "root_Obter_les_données_Récupération"
+	"root_Obter_les_données_Récupération_item0" [label="blocRepository.findById(idBloc).get()" color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
+	"root_Obter_les_données_Récupération" -> "root_Obter_les_données_Récupération_item0"
+	"root_Obter_les_données_Modification" [label=<<B>Modification</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	"root_Obter_les_données" -> "root_Obter_les_données_Modification"
+	"root_Obter_les_données_Modification_item0" [label="bloc.setFoyer(null)" color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
+	"root_Obter_les_données_Modification" -> "root_Obter_les_données_Modification_item0"
+	"root_Enregistrer_les_données" [label=<<B>Enregistrer les données</B>> color="#1f77b4" fillcolor="#1f77b433" shape=box style=filled]
+	root -> "root_Enregistrer_les_données"
+	"root_Enregistrer_les_données_Mise_à_jour" [label=<<B>Mise à jour</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	"root_Enregistrer_les_données" -> "root_Enregistrer_les_données_Mise_à_jour"
+	"root_Enregistrer_les_données_Mise_à_jour_item0" [label="BlocRepository.save(bloc)" color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
+	"root_Enregistrer_les_données_Mise_à_jour" -> "root_Enregistrer_les_données_Mise_à_jour_item0"
+	root_URL [label=<<B>URL</B>> color="#1f77b4" fillcolor="#1f77b433" shape=box style=filled]
+	root -> root_URL
+	root_URL_Affectation [label=<<B>Affectation</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	root_URL -> root_URL_Affectation
+	root_URL_Affectation_item0 [label="http://localhost:8089/tpfoyer/bloc/create" color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
+	root_URL_Affectation -> root_URL_Affectation_item0
+	"root_URL_Désaffectation" [label=<<B>Désaffectation</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	root_URL -> "root_URL_Désaffectation"
+	"root_URL_Désaffectation_item0" [label="http://localhost:8089/tpfoyer/bloc/desaffecter-bloc-foyer/1" color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
+	"root_URL_Désaffectation" -> "root_URL_Désaffectation_item0"
+	"root_Méthode_HTTP" [label=<<B>Méthode HTTP</B>> color="#1f77b4" fillcolor="#1f77b433" shape=box style=filled]
+	root -> "root_Méthode_HTTP"
+	"root_Méthode_HTTP_Ressource" [label=<<B>Ressource</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	"root_Méthode_HTTP" -> "root_Méthode_HTTP_Ressource"
+	"root_Méthode_HTTP_Ressource_item0" [label=Bloc color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
+	"root_Méthode_HTTP_Ressource" -> "root_Méthode_HTTP_Ressource_item0"
+	"root_Méthode_HTTP_Type_de_requête" [label=<<B>Type de requête</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	"root_Méthode_HTTP" -> "root_Méthode_HTTP_Type_de_requête"
+	"root_Méthode_HTTP_Type_de_requête_item0" [label=PUT color="#ff7f0e" fillcolor="#ff7f0e33" shape=ellipse style=filled]
+	"root_Méthode_HTTP_Type_de_requête" -> "root_Méthode_HTTP_Type_de_requête_item0"
 }

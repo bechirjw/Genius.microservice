@@ -32,14 +32,18 @@ public class CategorieSercieImpl implements ICategorieService {
     private  UserClient userClient;
 
 
-@Override
-public Categorie updateLikes(Long idCategorie, Integer likes) {
-    Categorie categorie = categorieRepository.findById(idCategorie)
-            .orElseThrow(() -> new EntityNotFoundException("Catégorie non trouvée avec l'ID : " + idCategorie));
+    @Override
+    public void likeCategorie(Long categorieId, Long userId) {
+        Categorie categorie = categorieRepository.findById(categorieId)
+                .orElseThrow(() -> new EntityNotFoundException("Catégorie non trouvée"));
 
-    categorie.setLikes(likes);
-    return categorieRepository.save(categorie);
-}
+        if (categorie.hasUserLiked(userId)) {
+            throw new IllegalStateException("L'utilisateur a déjà liké cette catégorie");
+        }
+
+        categorie.like(userId);
+        categorieRepository.save(categorie);
+    }
 
     @Override
     public List<Categorie> retrieveAllCategories() {
@@ -118,10 +122,5 @@ public Categorie updateLikes(Long idCategorie, Integer likes) {
         return categorieRepository.save(categorie);
     }
 
-    public void likeCategorie(Long categorieId, Long userId) {
-        Categorie categorie = categorieRepository.findById(categorieId)
-                .orElseThrow(() -> new RuntimeException("Categorie not found"));
-        categorie.like(userId);
-        categorieRepository.save(categorie);
-    }
+
 }

@@ -16,7 +16,7 @@ public class Achat {
 
     private Long utilisateurId; // juste l'ID de l'utilisateur
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Ressource ressource; // la ressource achetée
 
     private String dateAchat;
