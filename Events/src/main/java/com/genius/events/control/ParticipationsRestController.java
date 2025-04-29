@@ -7,17 +7,19 @@ import com.genius.events.entity.Evenements;
 import com.genius.events.entity.Participations;
 import com.genius.events.repository.EvenementsRepository;
 import com.genius.events.repository.ParticipationsRepository;
-import com.genius.events.service.IListeAttenteService;
-import com.genius.events.service.IParticipationsService;
-import com.genius.events.service.PdfExportService;
+import com.genius.events.service.*;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
 //@CrossOrigin(origins = "http://localhost:4200")
@@ -34,27 +36,21 @@ public class ParticipationsRestController {
     private ParticipationsRepository participationsRepository;
     private final IListeAttenteService listeAttenteService;
 
-    // http://localhost:8089/backend/participations/retrieve-all-participations
+    @Autowired
+    private EmailService emailService;
+
     @GetMapping("/retrieve-all-participations")
     public List<Participations> getParticipations() {
         List<Participations> listParticipations = participationsService.retrieveAllParticipations();
         return listParticipations;
     }
 
-    // http://localhost:8089/backend/participations/retrieve-participation/{participation-id}
+
     @GetMapping("/retrieve-participation/{participation-id}")
     public Participations retrieveParticipation(@PathVariable("participation-id") Long participationId) {
         Participations participation = participationsService.retrieveParticipation(participationId);
         return participation;
     }
-
-    // http://localhost:8089/backend/participations/add-participation
-   // @PostMapping("/add-participation")
-  //  public Participations addParticipation(@RequestBody Participations p) {
-      //  Participations participation = participationsService.addParticipation(p);
-     //   return participation;
-  //  }
-
 
     @PostMapping("/add-participation")
     public Evenements addParticipation(@RequestBody ParticipationDTO dto) {
@@ -63,33 +59,61 @@ public class ParticipationsRestController {
         Evenements event = evenementsRepository.findById(idEvent)
                 .orElseThrow(() -> new RuntimeException("Événement non trouvé"));
 
+        // 🚨 Vérifier que les données utilisateur et événement sont présentes
+        if (dto.getNomUtilisateur() == null || dto.getNomUtilisateur().isBlank()) {
+            throw new RuntimeException("Nom d'utilisateur est vide. Impossible de générer QR code.");
+        }
+
+        if (event.getTitre() == null || event.getTitre().isBlank()) {
+            throw new RuntimeException("Titre d'événement est vide. Impossible de générer QR code.");
+        }
+
+        // 🚨 NOUVEAU : Vérifier que l'utilisateur ne participe pas deux fois
+        boolean dejaParticipe = participationsRepository.existsByUtilisateurIdAndEvenementId(
+                dto.getUtilisateurId(), dto.getEvenementId());
+
+        if (dejaParticipe) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Vous avez déjà participé à cet événement !");
+        }
+
+        // ✅ Continuer l'ajout normal
         Participations participation = new Participations();
         participation.setEvenement(event);
         participation.setStatut(dto.getStatut());
         participation.setDateInscription(LocalDateTime.now());
-
-        // 🟢 N'oublie pas cette ligne :
         participation.setUtilisateurId(dto.getUtilisateurId());
+        participation.setNomUtilisateur(dto.getNomUtilisateur());
+        participation.setEmailUtilisateur(dto.getEmailUtilisateur());
 
         participationsRepository.save(participation);
 
-        return evenementsRepository.findById(idEvent).orElseThrow();
+        // ➡️ Générer le contenu QR
+        String qrContent = "Utilisateur: " + dto.getNomUtilisateur() + "\nÉvénement: " + event.getTitre();
+        System.out.println("Contenu QR généré : " + qrContent);
+
+        try {
+            byte[] qrCodeImage = QRCodeService.generateQRCode(qrContent, 250, 250);
+
+            Path path = Path.of("qrcodes", "qr_" + dto.getNomUtilisateur().replace(" ", "_") + "_" + event.getTitre().replace(" ", "_") + ".png");
+            Files.createDirectories(path.getParent());
+            Files.write(path, qrCodeImage);
+
+            emailService.sendEmailWithQRCode(
+                    dto.getEmailUtilisateur(),
+                    qrCodeImage,
+                    "Confirmation de votre participation",
+                    "Merci pour votre participation à l'événement : " + event.getTitre()
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return event;
     }
 
 
 
-
-
-
-
-
-    // http://localhost:8089/backend/participations/remove-participation/{participation-id}
-   // @DeleteMapping("/remove-participation/{participation-id}")
-  //  public void removeParticipation(@PathVariable("participation-id") Long participationId) {
-      //  participationsService.removeParticipation(participationId);
-  //  }
-
-    // http://localhost:8089/backend/participations/modify-participation
     @PutMapping("/modify-participation")
     public Participations modifyParticipation(@RequestBody Participations p) {
         Participations participation = participationsService.modifyParticipation(p);

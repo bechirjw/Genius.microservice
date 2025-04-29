@@ -10,7 +10,7 @@ import java.util.List;
 public interface IParticipationsService {
     List<Participations> retrieveAllParticipations();
     Participations retrieveParticipation(Long idParticipation);
-    Participations addParticipation(Participations participation);
+
     void removeParticipation(Long idParticipation);
     Participations modifyParticipation(Participations participation);
 
@@ -18,5 +18,6 @@ public interface IParticipationsService {
 
     Long countByEvenementId(Long idEvenement);
     List<ParticipationDetailsDTO> getParticipationDetailsByEvenement(Long evenementId);
+    Participations addParticipation(Participations participation);
 
 }

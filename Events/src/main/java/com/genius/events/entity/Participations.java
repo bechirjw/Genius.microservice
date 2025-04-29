@@ -34,4 +34,12 @@ public class Participations {
     @Column(name = "utilisateur_id")
     private Long utilisateurId; // temporaire, jusqu’à ce que l'entité Utilisateur soit intégrée
 
+    @Column(name = "FullName")
+    private String nomUtilisateur;
+
+
+
+    @Column(name = "email_utilisateur")
+    private String emailUtilisateur;
+
 }

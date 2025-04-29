@@ -68,7 +68,8 @@ public class EvenementsRestController {
                 Path filePath = Paths.get(uploadDir + fileName);
                 Files.createDirectories(filePath.getParent());
                 Files.write(filePath, imageFile.getBytes());
-                imagePath = uploadDir + fileName;
+                imagePath = "uploads/" + fileName;
+
             }
 
             Evenements evenement = new Evenements();
@@ -122,7 +123,8 @@ public class EvenementsRestController {
                 Path filePath = Paths.get(uploadDir + fileName);
                 Files.createDirectories(filePath.getParent());
                 Files.write(filePath, imageFile.getBytes());
-                evenement.setImage(uploadDir + fileName);
+                evenement.setImage("uploads/" + fileName);
+
             }
 
             Evenements updated = evenementsService.modifyEvenement(evenement);
