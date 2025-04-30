@@ -3,6 +3,7 @@ package com.genius.events.service;
 
 import com.genius.events.dto.ParticipationDTO;
 import com.genius.events.dto.ParticipationDetailsDTO;
+import com.genius.events.dto.ParticipationEventDTO;
 import com.genius.events.dto.UserDTO;
 import com.genius.events.entity.Evenements;
 import com.genius.events.entity.Participations;
@@ -81,7 +82,15 @@ public class ParitipationsServiceImpl implements IParticipationsService {
 
         return event;
     }
+    @Override
+    public List<Evenements> getEvenementsByUtilisateurId(Long utilisateurId) {
+        return participationsRepository.findEvenementsByUtilisateurId(utilisateurId);
+    }
 
+    @Override
+    public List<ParticipationEventDTO> getParticipationsOfUtilisateur(Long utilisateurId) {
+        return participationsRepository.findParticipationsByUtilisateurId(utilisateurId);
+    }
 
 
     public void removeParticipation(Long idParticipation) {
@@ -94,10 +103,7 @@ public class ParitipationsServiceImpl implements IParticipationsService {
     }
 
 
-    @Override
-    public List<Evenements> getEvenementsByUtilisateurId(Long utilisateurId) {
-        return participationsRepository.findEvenementsByUtilisateurId(utilisateurId);
-    }
+
 
 
     public Long countByEvenementId(Long idEvenement) {

@@ -45,5 +45,9 @@ public class EvenementsServiceImpl implements IEvenementsService {
         return evenementsRepository.findByStatut(statut);
     }
 
+    @Override
+    public List<Evenements> getEvenementsByUtilisateur(Long utilisateurId) {
+        return evenementsRepository.findByUtilisateurId(utilisateurId);
+    }
 
 }

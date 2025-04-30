@@ -3,6 +3,7 @@ package com.genius.events.control;
 
 import com.genius.events.dto.ParticipationDTO;
 import com.genius.events.dto.ParticipationDetailsDTO;
+import com.genius.events.dto.ParticipationEventDTO;
 import com.genius.events.entity.Evenements;
 import com.genius.events.entity.Participations;
 import com.genius.events.repository.EvenementsRepository;
@@ -149,6 +150,10 @@ public class ParticipationsRestController {
     public ResponseEntity<List<ParticipationDetailsDTO>> getParticipationsDetails(@PathVariable Long evenementId) {
         List<ParticipationDetailsDTO> participations = participationsService.getParticipationDetailsByEvenement(evenementId);
         return ResponseEntity.ok(participations);
+    }
+    @GetMapping("/participations-utilisateur/{utilisateurId}")
+    public ResponseEntity<List<ParticipationEventDTO>> getParticipationsParUtilisateur(@PathVariable Long utilisateurId) {
+        return ResponseEntity.ok(participationsService.getParticipationsOfUtilisateur(utilisateurId));
     }
 
 

@@ -1,13 +1,17 @@
 package com.genius.events.control;
 
+import com.genius.events.dto.ReactionRequest;
 import com.genius.events.entity.Evenements;
+import com.genius.events.entity.Reaction;
 import com.genius.events.entity.StatutEvenement;
 import com.genius.events.repository.ParticipationsRepository;
+import com.genius.events.repository.ReactionRepository;
 import com.genius.events.service.IEvenementsService;
 
 import com.genius.events.service.PdfExportService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,6 +29,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 //@CrossOrigin(origins = "http://localhost:4200")
@@ -36,6 +41,9 @@ public class EvenementsRestController {
     IEvenementsService evenementsService;
     private final ParticipationsRepository participationRepository;
     private final PdfExportService pdfExportService;
+    @Autowired
+    private ReactionRepository reactionRepository;
+
     @GetMapping("/retrieve-all-evenements")
     public List<Evenements> getEvenements() {
         return evenementsService.retrieveAllEvenements()
@@ -58,7 +66,9 @@ public class EvenementsRestController {
             @RequestParam("dateFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFin,
             @RequestParam("lieu") String lieu,
             @RequestParam("categorie") String categorie,
-            @RequestParam("nbMaxParticipants") Integer nbMaxParticipants
+            @RequestParam("nbMaxParticipants") Integer nbMaxParticipants,
+            @RequestParam("utilisateurId") Long utilisateurId
+
     ) {
         try {
             String imagePath = null;
@@ -82,7 +92,7 @@ public class EvenementsRestController {
             evenement.setNbMaxParticipants(nbMaxParticipants);
             evenement.setStatut(StatutEvenement.NON_TRAITE); // 👈 Défaut
             evenement.setImage(imagePath);
-
+            evenement.setUtilisateurId(utilisateurId); // 🟰 AJOUTER CETTE LIGNE
             Evenements saved = evenementsService.addEvenement(evenement);
             return ResponseEntity.ok(saved);
         } catch (Exception e) {
@@ -238,4 +248,56 @@ public class EvenementsRestController {
         List<Evenements> evenements = evenementsService.retrieveAllEvenements();
         pdfExportService.exportDeuxTables(evenements, response);
     }
+
+
+    @GetMapping("/evenements-crees-utilisateur/{utilisateurId}")
+    public ResponseEntity<List<Evenements>> getEvenementsCreesParUtilisateur(@PathVariable Long utilisateurId) {
+        return ResponseEntity.ok(evenementsService.getEvenementsByUtilisateur(utilisateurId));
+    }
+
+    @PostMapping("/reaction")
+    public ResponseEntity<String> ajouterOuModifierReaction(@RequestBody ReactionRequest req) {
+        Optional<Reaction> existing = reactionRepository.findByUtilisateurIdAndEvenementId(
+                req.getUtilisateurId(), req.getEvenementId());
+
+        if (existing.isPresent()) {
+            Reaction reactionExistante = existing.get();
+            reactionExistante.setType(req.getType()); // mettre à jour le type
+            reactionExistante.setDateReaction(LocalDateTime.now());
+            reactionRepository.save(reactionExistante);
+            return ResponseEntity.ok("Réaction mise à jour.");
+        } else {
+            Reaction nouvelle = new Reaction();
+            nouvelle.setUtilisateurId(req.getUtilisateurId());
+            nouvelle.setEvenementId(req.getEvenementId());
+            nouvelle.setType(req.getType());
+            nouvelle.setDateReaction(LocalDateTime.now());
+            reactionRepository.save(nouvelle);
+            return ResponseEntity.ok("Réaction enregistrée.");
+        }
+    }
+
+
+    @GetMapping("/reaction/count/{evenementId}")
+    public Map<String, Long> countReactions(@PathVariable Long evenementId) {
+        long likes = reactionRepository.countByEvenementIdAndType(evenementId, "LIKE");
+        long dislikes = reactionRepository.countByEvenementIdAndType(evenementId, "DISLIKE");
+
+        Map<String, Long> res = new HashMap<>();
+        res.put("likes", likes);
+        res.put("dislikes", dislikes);
+        return res;
+    }
+    @GetMapping("/check/{evenementId}/{utilisateurId}")
+    public ResponseEntity<Boolean> dejaReagi(@PathVariable Long evenementId, @PathVariable Long utilisateurId) {
+        boolean existe = reactionRepository.findByUtilisateurIdAndEvenementId(utilisateurId, evenementId).isPresent();
+        return ResponseEntity.ok(existe);
+    }
+    @GetMapping("/reaction/type/{evenementId}/{utilisateurId}")
+    public ResponseEntity<String> getReactionType(@PathVariable Long evenementId, @PathVariable Long utilisateurId) {
+        Optional<Reaction> reaction = reactionRepository.findByUtilisateurIdAndEvenementId(utilisateurId, evenementId);
+        return reaction.map(r -> ResponseEntity.ok(r.getType()))
+                .orElse(ResponseEntity.ok("NONE"));
+    }
+
 }

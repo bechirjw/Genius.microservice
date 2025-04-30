@@ -14,5 +14,6 @@ public interface IEvenementsService {
     void removeEvenement(Long idEvenement);
     Evenements modifyEvenement(Evenements evenement);
     List<Evenements> getEvenementsByStatut(StatutEvenement statut);
+    List<Evenements> getEvenementsByUtilisateur(Long utilisateurId);
 
 }
