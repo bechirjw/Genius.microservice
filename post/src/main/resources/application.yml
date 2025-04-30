@@ -6,6 +6,19 @@ spring:
     name: posts
   config:
     import: optional:configserver:http://localhost:8888
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: roudainagmati11@gmail.com
+    password: "mfjz fvtz yhlo zows"
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -30,3 +43,4 @@ management:
   tracing:
     sampling:
       probability: 1.0
+

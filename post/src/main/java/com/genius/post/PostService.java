@@ -13,6 +13,7 @@ import java.util.Optional;
 public class PostService {
     @Autowired
     private PostRepository postRepository;
+    private final EmailService emailService;
 
     public List<Post> retrieveAllPosts() {
         return postRepository.findAll();
@@ -29,6 +30,15 @@ public class PostService {
 
     public void removePost(Long postId) {
         postRepository.deleteById(postId);
+    }
+    public void deletePost(Long postId, String title, String firstName, String email) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post not found with id: " + postId));
+
+        postRepository.delete(post);
+
+        // Send email
+        emailService.sendPostDeletionEmail(title, firstName, email);
     }
 
    /* public Post modifyPost(Long id,Post post) {
