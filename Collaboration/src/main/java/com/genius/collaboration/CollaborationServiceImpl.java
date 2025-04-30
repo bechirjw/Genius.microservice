@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 
-import javax.management.Notification;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,24 +34,37 @@ private void sendNotificationToProjectOwner(Collaboration collaboration) {
     try {
         RestTemplate restTemplate = new RestTemplate();
 
-        // Fetch project id and owner id
+        // 1. Récupérer l'ID du projet
         Long projetId = collaboration.getProjetId();
-        Long ownerId = 1L; // 🚨 Make sure your Projet has a getOwnerId()
 
-        // Create notification object
+        // 2. Appeler le microservice Projet pour récupérer le ProjetDto
+        String projectServiceUrl = "http://localhost:5200/projet/retrieve-projet/" + projetId;
+        ProjetDto projet = restTemplate.getForObject(projectServiceUrl, ProjetDto.class);
+
+        if (projet == null || projet.getUserId() == null) {
+            System.err.println("❌ Projet not found or has no owner!");
+            return;
+        }
+
+        // 3. Préparer les IDs pour la notification
+        Long ownerId = projet.getUserId();             // 👈 Entrepreneur
+        Long senderId = collaboration.getUserId();     // 👈 Étudiant
+
+        // 4. Créer et envoyer la notification
         NotificationRequest notification = new NotificationRequest();
-        notification.setMessage("A new collaboration request on your project!");
+        notification.setMessage("Une nouvelle demande de collaboration sur votre projet !");
         notification.setReceiverId(ownerId);
+        notification.setSenderId(senderId);
         notification.setType("NEW_COLLABORATION");
         notification.setProjetId(projetId);
 
-        // Send notification
-        restTemplate.postForObject("http://localhost:5220/api/notifications/send", notification, Notification.class);
+        restTemplate.postForObject("http://localhost:5220/api/notifications/send", notification, Void.class);
 
     } catch (Exception e) {
-        System.err.println("Failed to send notification: " + e.getMessage());
+        System.err.println("❌ Failed to send notification: " + e.getMessage());
     }
 }
+
 
     public Collaboration addCollaboration(Collaboration c) {
     Collaboration savedCollaboration = collaborationRepository.save(c);

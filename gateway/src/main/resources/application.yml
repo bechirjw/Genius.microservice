@@ -44,7 +44,7 @@ spring:
         - id: projets-service
           uri: lb://projets
           predicates:
-            - Path=/**
+            - Path=/projet/**, /tache/**
           filters:
             - StripPrefix=0
         - id: Forum-service

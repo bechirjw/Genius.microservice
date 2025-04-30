@@ -328,6 +328,8 @@ public class FacialRecognitionController {
                 logger.info("Facial match confirmed for user: {}", user.getName());
 
                 var claims = new HashMap<String, Object>();
+                claims.put("id", user.getIdUser());
+
                 claims.put("fullName", user.fullName());
                 claims.put("role", user.getRoles().name());
                 claims.put("imageVerified",true);

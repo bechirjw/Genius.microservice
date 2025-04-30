@@ -17,4 +17,6 @@ public class Collaboration {
     private Date dateDemande;
     private Date dateValidation;
     private Long projetId;
+    private Long userId; // 🆕 Ajout ici (id du collaborateur étudiant)
+
 }

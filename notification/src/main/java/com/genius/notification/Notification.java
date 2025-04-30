@@ -22,6 +22,8 @@ public class Notification {
 
     private Long receiverId;  // the user who should receive this notification
     private Long projetId;    // optional: to link to a project
+    private Long senderId;
+
 
     private String type; // ex: "NEW_COLLABORATION"
     private LocalDateTime timestamp = LocalDateTime.now();

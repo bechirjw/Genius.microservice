@@ -28,6 +28,8 @@ public class Projet {
     private Date dateFinPrevue;
     private int nombreMaxCollaborateurs;
 
+    private Long userId; // 🆕 Ajout ici (id de l'entrepreneur créateur)
+
     @ElementCollection
     private List<String> competencesRequises;
 
