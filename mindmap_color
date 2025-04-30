@@ -2,58 +2,86 @@
 digraph {
 	rankdir=LR
 	root [label=Mindmap color="#DAA520" fillcolor="#FFD700" shape=star style=filled]
-	"root_Système_informatique" [label=<<B>Système informatique</B>> color="#1f77b4" fillcolor="#1f77b433" shape=box style=filled]
-	root -> "root_Système_informatique"
-	"root_Système_informatique_Equipements_physiques_actifs" [label=<<B>Equipements physiques actifs</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
-	"root_Système_informatique" -> "root_Système_informatique_Equipements_physiques_actifs"
-	"root_Système_informatique_Equipements_physiques_actifs_Systèmes" [label=<<B>Systèmes</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	"root_Système_informatique_Equipements_physiques_actifs" -> "root_Système_informatique_Equipements_physiques_actifs_Systèmes"
-	"root_Système_informatique_Equipements_physiques_actifs_Systèmes_item0" [label=Serveur color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Equipements_physiques_actifs_Systèmes" -> "root_Système_informatique_Equipements_physiques_actifs_Systèmes_item0"
-	"root_Système_informatique_Equipements_physiques_actifs_Systèmes_item1" [label=Console color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Equipements_physiques_actifs_Systèmes" -> "root_Système_informatique_Equipements_physiques_actifs_Systèmes_item1"
-	"root_Système_informatique_Equipements_physiques_actifs_Systèmes_item2" [label=Kiosque color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Equipements_physiques_actifs_Systèmes" -> "root_Système_informatique_Equipements_physiques_actifs_Systèmes_item2"
-	"root_Système_informatique_Equipements_physiques_actifs_Unités_de_stockage" [label=<<B>Unités de stockage</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	"root_Système_informatique_Equipements_physiques_actifs" -> "root_Système_informatique_Equipements_physiques_actifs_Unités_de_stockage"
-	"root_Système_informatique_Equipements_physiques_actifs_Unités_de_stockage_item0" [label="Tour RAID" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Equipements_physiques_actifs_Unités_de_stockage" -> "root_Système_informatique_Equipements_physiques_actifs_Unités_de_stockage_item0"
-	"root_Système_informatique_Abstraits" [label=<<B>Abstraits</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
-	"root_Système_informatique" -> "root_Système_informatique_Abstraits"
-	"root_Système_informatique_Abstraits_Composants" [label=<<B>Composants</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	"root_Système_informatique_Abstraits" -> "root_Système_informatique_Abstraits_Composants"
-	"root_Système_informatique_Abstraits_Composants_item0" [label=GestionUtilisateur color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Abstraits_Composants" -> "root_Système_informatique_Abstraits_Composants_item0"
-	"root_Système_informatique_Concrètes" [label=<<B>Concrètes</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
-	"root_Système_informatique" -> "root_Système_informatique_Concrètes"
-	"root_Système_informatique_Concrètes_Artifact" [label=<<B>Artifact</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	"root_Système_informatique_Concrètes" -> "root_Système_informatique_Concrètes_Artifact"
-	"root_Système_informatique_Concrètes_Artifact_item0" [label="admin.exe" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Concrètes_Artifact" -> "root_Système_informatique_Concrètes_Artifact_item0"
-	"root_Système_informatique_Concrètes_Artifact_item1" [label="user.exe" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Concrètes_Artifact" -> "root_Système_informatique_Concrètes_Artifact_item1"
-	"root_Système_informatique_Concrètes_Artifact_item2" [label="myApplication.apk" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Concrètes_Artifact" -> "root_Système_informatique_Concrètes_Artifact_item2"
-	"root_Système_informatique_Concrètes_Artifact_item3" [label="classes.dex" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Concrètes_Artifact" -> "root_Système_informatique_Concrètes_Artifact_item3"
-	"root_Système_informatique_Concrètes_Artifact_item4" [label="resources.arsc" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Concrètes_Artifact" -> "root_Système_informatique_Concrètes_Artifact_item4"
-	"root_Système_informatique_Concrètes_Artifact_item5" [label="AndroidManifest.xml" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Concrètes_Artifact" -> "root_Système_informatique_Concrètes_Artifact_item5"
-	"root_Système_informatique_Concrètes_Fichiers" [label=<<B>Fichiers</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	"root_Système_informatique_Concrètes" -> "root_Système_informatique_Concrètes_Fichiers"
-	"root_Système_informatique_Concrètes_Fichiers_Ressources" [label=<<B>Ressources</B>> color="#d62728" fillcolor="#d6272833" shape=box style=filled]
-	"root_Système_informatique_Concrètes_Fichiers" -> "root_Système_informatique_Concrètes_Fichiers_Ressources"
-	"root_Système_informatique_Concrètes_Fichiers_Ressources_item0" [label="res/" color="#9467bd" fillcolor="#9467bd33" shape=ellipse style=filled]
-	"root_Système_informatique_Concrètes_Fichiers_Ressources" -> "root_Système_informatique_Concrètes_Fichiers_Ressources_item0"
-	"root_Système_informatique_Relations" [label=<<B>Relations</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
-	"root_Système_informatique" -> "root_Système_informatique_Relations"
-	"root_Système_informatique_Relations_Représentation" [label=<<B>Représentation</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	"root_Système_informatique_Relations" -> "root_Système_informatique_Relations_Représentation"
-	"root_Système_informatique_Relations_Représentation_item0" [label=manifest color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
-	"root_Système_informatique_Relations_Représentation" -> "root_Système_informatique_Relations_Représentation_item0"
-	"root_Système_informatique_Environnements_d'exécution" [label=<<B>Environnements d'exécution</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
-	"root_Système_informatique" -> "root_Système_informatique_Environnements_d'exécution"
-	"root_Système_informatique_Environnements_d'exécution_Android" [label=<<B>Android</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
-	"root_Système_informatique_Environnements_d'exécution" -> "root_Système_informatique_Environnements_d'exécution_Android"
+	root_System_Components [label=<<B>System Components</B>> color="#1f77b4" fillcolor="#1f77b433" shape=box style=filled]
+	root -> root_System_Components
+	root_System_Components_Equipment [label=<<B>Equipment</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	root_System_Components -> root_System_Components_Equipment
+	root_System_Components_Equipment_Physical_Active_Devices [label=<<B>Physical Active Devices</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_Equipment -> root_System_Components_Equipment_Physical_Active_Devices
+	root_System_Components_Equipment_Physical_Active_Devices_item0 [label=server color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Equipment_Physical_Active_Devices -> root_System_Components_Equipment_Physical_Active_Devices_item0
+	root_System_Components_Equipment_Physical_Active_Devices_item1 [label=console color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Equipment_Physical_Active_Devices -> root_System_Components_Equipment_Physical_Active_Devices_item1
+	root_System_Components_Equipment_Physical_Active_Devices_item2 [label=kiosk color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Equipment_Physical_Active_Devices -> root_System_Components_Equipment_Physical_Active_Devices_item2
+	root_System_Components_Equipment_Storage_Device [label=<<B>Storage Device</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_Equipment -> root_System_Components_Equipment_Storage_Device
+	root_System_Components_Equipment_Storage_Device_item0 [label="Tour RAID" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Equipment_Storage_Device -> root_System_Components_Equipment_Storage_Device_item0
+	root_System_Components_Abstraction [label=<<B>Abstraction</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	root_System_Components -> root_System_Components_Abstraction
+	root_System_Components_Abstraction_Component [label=<<B>Component</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_Abstraction -> root_System_Components_Abstraction_Component
+	root_System_Components_Abstraction_Component_item0 [label=GestionUtilisateur color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Component -> root_System_Components_Abstraction_Component_item0
+	root_System_Components_Abstraction_Component_item1 [label=myApplication color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Component -> root_System_Components_Abstraction_Component_item1
+	root_System_Components_Abstraction_Artifact [label=<<B>Artifact</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_Abstraction -> root_System_Components_Abstraction_Artifact
+	root_System_Components_Abstraction_Artifact_item0 [label="admin.exe" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Artifact -> root_System_Components_Abstraction_Artifact_item0
+	root_System_Components_Abstraction_Artifact_item1 [label="user.exe" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Artifact -> root_System_Components_Abstraction_Artifact_item1
+	root_System_Components_Abstraction_Artifact_item2 [label="myApplication.apk" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Artifact -> root_System_Components_Abstraction_Artifact_item2
+	root_System_Components_Abstraction_Artifact_item3 [label="classes.dex" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Artifact -> root_System_Components_Abstraction_Artifact_item3
+	root_System_Components_Abstraction_Artifact_item4 [label="resources.arsc" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Artifact -> root_System_Components_Abstraction_Artifact_item4
+	root_System_Components_Abstraction_Artifact_item5 [label="AndroidManifest.xml" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Artifact -> root_System_Components_Abstraction_Artifact_item5
+	root_System_Components_Abstraction_Artifact_item6 [label="res/" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Artifact -> root_System_Components_Abstraction_Artifact_item6
+	root_System_Components_Abstraction_Dependency [label=<<B>Dependency</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_Abstraction -> root_System_Components_Abstraction_Dependency
+	root_System_Components_Abstraction_Dependency_deploy [label=<<B>deploy</B>> color="#d62728" fillcolor="#d6272833" shape=box style=filled]
+	root_System_Components_Abstraction_Dependency -> root_System_Components_Abstraction_Dependency_deploy
+	root_System_Components_Abstraction_Dependency_deploy_item0 [label="fichiers représentés en dehors du nœud" color="#9467bd" fillcolor="#9467bd33" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Dependency_deploy -> root_System_Components_Abstraction_Dependency_deploy_item0
+	root_System_Components_Abstraction_Relationship [label=<<B>Relationship</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_Abstraction -> root_System_Components_Abstraction_Relationship
+	root_System_Components_Abstraction_Relationship_manifest [label=<<B>manifest</B>> color="#d62728" fillcolor="#d6272833" shape=box style=filled]
+	root_System_Components_Abstraction_Relationship -> root_System_Components_Abstraction_Relationship_manifest
+	root_System_Components_Abstraction_Relationship_manifest_item0 [label="Implémentation d'un composant par un artifact" color="#9467bd" fillcolor="#9467bd33" shape=ellipse style=filled]
+	root_System_Components_Abstraction_Relationship_manifest -> root_System_Components_Abstraction_Relationship_manifest_item0
+	root_System_Components_Execution_Environment [label=<<B>Execution Environment</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	root_System_Components -> root_System_Components_Execution_Environment
+	root_System_Components_Execution_Environment_Smartphone [label=<<B>Smartphone</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_Execution_Environment -> root_System_Components_Execution_Environment_Smartphone
+	root_System_Components_Execution_Environment_Android [label=<<B>Android</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_Execution_Environment -> root_System_Components_Execution_Environment_Android
+	root_System_Components_File_Type [label=<<B>File Type</B>> color="#2ca02c" fillcolor="#2ca02c33" shape=box style=filled]
+	root_System_Components -> root_System_Components_File_Type
+	root_System_Components_File_Type_Executable [label=<<B>Executable</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_File_Type -> root_System_Components_File_Type_Executable
+	root_System_Components_File_Type_Executable_item0 [label="admin.exe" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_File_Type_Executable -> root_System_Components_File_Type_Executable_item0
+	root_System_Components_File_Type_Executable_item1 [label="user.exe" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_File_Type_Executable -> root_System_Components_File_Type_Executable_item1
+	root_System_Components_File_Type_Executable_item2 [label="myApplication.apk" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_File_Type_Executable -> root_System_Components_File_Type_Executable_item2
+	root_System_Components_File_Type_Resource [label=<<B>Resource</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_File_Type -> root_System_Components_File_Type_Resource
+	root_System_Components_File_Type_Resource_item0 [label="classes.dex" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_File_Type_Resource -> root_System_Components_File_Type_Resource_item0
+	root_System_Components_File_Type_Resource_item1 [label="resources.arsc" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_File_Type_Resource -> root_System_Components_File_Type_Resource_item1
+	root_System_Components_File_Type_Resource_item2 [label="AndroidManifest.xml" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_File_Type_Resource -> root_System_Components_File_Type_Resource_item2
+	root_System_Components_File_Type_Resource_item3 [label="res/" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	root_System_Components_File_Type_Resource -> root_System_Components_File_Type_Resource_item3
+	"root_System_Components_File_Type_Application_Packages_(APK)" [label=<<B>Application Packages (APK)</B>> color="#ff7f0e" fillcolor="#ff7f0e33" shape=box style=filled]
+	root_System_Components_File_Type -> "root_System_Components_File_Type_Application_Packages_(APK)"
+	"root_System_Components_File_Type_Application_Packages_(APK)_item0" [label="myApplication.apk" color="#d62728" fillcolor="#d6272833" shape=ellipse style=filled]
+	"root_System_Components_File_Type_Application_Packages_(APK)" -> "root_System_Components_File_Type_Application_Packages_(APK)_item0"
 }

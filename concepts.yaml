@@ -1,8 +1,5 @@
-Système informatique:
-  Abstraits:
-    Composants:
-    - GestionUtilisateur
-  Concrètes:
+System Components:
+  Abstraction:
     Artifact:
     - admin.exe
     - user.exe
@@ -10,18 +7,35 @@ Système informatique:
     - classes.dex
     - resources.arsc
     - AndroidManifest.xml
-    Fichiers:
-      Ressources:
-      - res/
-  Environnements d'exécution:
-    Android: []
-  Equipements physiques actifs:
-    Systèmes:
-    - Serveur
-    - Console
-    - Kiosque
-    Unités de stockage:
+    - res/
+    Component:
+    - GestionUtilisateur
+    - myApplication
+    Dependency:
+      deploy:
+      - fichiers représentés en dehors du nœud
+    Relationship:
+      manifest:
+      - Implémentation d'un composant par un artifact
+  Equipment:
+    Physical Active Devices:
+    - server
+    - console
+    - kiosk
+    Storage Device:
     - Tour RAID
-  Relations:
-    Représentation:
-    - manifest
+  Execution Environment:
+    Android: []
+    Smartphone: []
+  File Type:
+    Application Packages (APK):
+    - myApplication.apk
+    Executable:
+    - admin.exe
+    - user.exe
+    - myApplication.apk
+    Resource:
+    - classes.dex
+    - resources.arsc
+    - AndroidManifest.xml
+    - res/

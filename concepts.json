@@ -1,42 +1,59 @@
 {
-  "Syst\u00e8me informatique": {
-    "Equipements physiques actifs": {
-      "Syst\u00e8mes": [
-        "Serveur",
-        "Console",
-        "Kiosque"
+  "System Components": {
+    "Equipment": {
+      "Physical Active Devices": [
+        "server",
+        "console",
+        "kiosk"
       ],
-      "Unit\u00e9s de stockage": [
+      "Storage Device": [
         "Tour RAID"
       ]
     },
-    "Abstraits": {
-      "Composants": [
-        "GestionUtilisateur"
-      ]
-    },
-    "Concr\u00e8tes": {
+    "Abstraction": {
+      "Component": [
+        "GestionUtilisateur",
+        "myApplication"
+      ],
       "Artifact": [
         "admin.exe",
         "user.exe",
         "myApplication.apk",
         "classes.dex",
         "resources.arsc",
-        "AndroidManifest.xml"
+        "AndroidManifest.xml",
+        "res/"
       ],
-      "Fichiers": {
-        "Ressources": [
-          "res/"
+      "Dependency": {
+        "deploy": [
+          "fichiers repr\u00e9sent\u00e9s en dehors du n\u0153ud"
+        ]
+      },
+      "Relationship": {
+        "manifest": [
+          "Impl\u00e9mentation d'un composant par un artifact"
         ]
       }
     },
-    "Relations": {
-      "Repr\u00e9sentation": [
-        "manifest"
-      ]
-    },
-    "Environnements d'ex\u00e9cution": {
+    "Execution Environment": {
+      "Smartphone": [],
       "Android": []
+    },
+    "File Type": {
+      "Executable": [
+        "admin.exe",
+        "user.exe",
+        "myApplication.apk"
+      ],
+      "Resource": [
+        "classes.dex",
+        "resources.arsc",
+        "AndroidManifest.xml",
+        "res/"
+      ],
+      "Application Packages (APK)": [
+        "myApplication.apk"
+      ]
     }
   }
 }

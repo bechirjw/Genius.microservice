@@ -8,6 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class Achat {
 
     @Id
@@ -15,6 +17,7 @@ public class Achat {
     private Long id;
 
     private Long utilisateurId; // juste l'ID de l'utilisateur
+    private String email;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Ressource ressource; // la ressource achetée

@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.*;
 import com.stripe.model.checkout.Session; // ✅ Correct pour Stripe Checkout
 import com.stripe.net.Webhook;
@@ -30,6 +32,8 @@ public class PaymentController {
     private AchatService achatService;
     @Value("${stripe.webhook.secret.key}")
     private String webhookSecret;
+    @Autowired
+    private JavaMailSenderImpl mailSender;
 
     @PostMapping("/create-checkout-session")
     public ResponseEntity<Map<String, String>> createCheckoutSession(@RequestBody PaymentRequest request) {
@@ -41,6 +45,7 @@ public class PaymentController {
                     request.getAmount(),
                     request.getSuccessUrl(),
                     request.getCancelUrl()
+
             );
             Map<String, String> responseData = new HashMap<>();
             responseData.put("sessionId", session.getId());
@@ -79,7 +84,10 @@ public class PaymentController {
                 Long ressourceId = Long.parseLong(ressourceIdStr);
 
                 achatService.enregistrerAchat(utilisateurId, ressourceId);
+
+
                 return ResponseEntity.ok("Achat enregistré avec succès");
+
             }
 
             return ResponseEntity.ok("Événement ignoré");

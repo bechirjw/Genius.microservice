@@ -1,6 +1,5 @@
 package com.genuis.ressources;
 
-
 public class PaymentRequest {
     private Long utilisateurId;
     private Long ressourceId;
@@ -8,6 +7,7 @@ public class PaymentRequest {
     private long amount;
     private String successUrl;
     private String cancelUrl;
+    private String email;
     public String getResourceName() {
         return resourceName;
     }
@@ -44,6 +44,8 @@ public class PaymentRequest {
     public void setUtilisateurId(Long utilisateurId) { this.utilisateurId = utilisateurId;}
     public Long getRessourceId() { return ressourceId;}
     public void setRessourceId(Long ressourceId) { this.ressourceId = ressourceId;}
+
+
     // Getters et setters
     
 }

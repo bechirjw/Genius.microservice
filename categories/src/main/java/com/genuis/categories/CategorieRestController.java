@@ -54,6 +54,7 @@ private CategorieDTO convertToDto(Categorie categorie) {
     dto.setDescription(categorie.getDescription());
     dto.setDateCreation(categorie.getDateCreation());
     dto.setLikes(categorie.getLikes());
+    dto.setIdUser(categorie.getIdUser());
     if (categorie.getImage() != null) {
         dto.setImage(Base64.getEncoder().encodeToString(categorie.getImage()));
     }

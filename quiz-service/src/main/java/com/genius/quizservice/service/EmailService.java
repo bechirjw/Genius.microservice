@@ -11,7 +11,7 @@ import java.io.IOException;
 @Service
 public class EmailService {
 
-    private static final String API_KEY = "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";
+    private static final String API_KEY = "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";
 
     public void sendEmail(String to, String subject, String body) {
         Email from = new Email("oussamachatgpt01@gmail.com");
@@ -48,7 +48,7 @@ public class EmailService {
                   <p style="text-align: center; font-size: 18px;">You have successfully completed the quiz: <strong>%s</strong>.</p>
                   <p style="text-align: center; font-size: 18px;">Your Score: <strong>%.2f%%</strong></p>
                   <div style="text-align: center; margin-top: 30px;">
-                    <a href="https://your-platform-link.com" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px;">View More Quizzes</a>
+                    <a href="http://localhost:4200/#/quiz" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px;">View More Quizzes</a>
                   </div>
                   <p style="text-align: center; font-size: 12px; color: #999; margin-top: 20px;">&copy; 2025 Genius Quiz Platform. All rights reserved.</p>
                 </div>

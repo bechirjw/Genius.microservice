@@ -17,15 +17,16 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: roudainagmati11@gmail.com
-    password: mfjz fvtz yhlo zows
+    password: "mfjz fvtz yhlo zows"
     protocol: smtp
+    default-encoding: UTF-8
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-    default-encoding: UTF-8
+
   datasource:
     url: jdbc:mysql://localhost:3306/ressources?createDatabaseIfNotExist=true
     username: root
