@@ -67,7 +67,7 @@ public class CollaborationRestController {
 //        return ResponseEntity.ok(collab);
 //    }
 @PutMapping("/collaborations/{id}/accepter")
-public ResponseEntity<Collaboration> accepterCollaboration(@PathVariable("id") Long id)
+public ResponseEntity<Collaboration> accepterCollaboration(@PathVariable Long id)
  { Collaboration updated = collaborationService.accepterCollaboration(id); if (updated != null) { return ResponseEntity.ok(updated); } else { return ResponseEntity.notFound().build(); } }
 
 

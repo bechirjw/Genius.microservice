@@ -7,10 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="user-service" />
         <module name="config-server" />
-        <module name="discovery" />
         <module name="quiz-service" />
+        <module name="user-service" />
+        <module name="discovery" />
         <module name="gateway" />
       </profile>
       <profile name="Annotation profile for notification" enabled="true">
@@ -30,7 +30,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
+        <processorPath>
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="comment" />
@@ -39,5 +39,8 @@
         <module name="ressources" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-parameters " />
   </component>
 </project>

@@ -79,7 +79,7 @@ public class ProjetRestController {
 
 
     @PostMapping("/roadmap/{projetId}")
-    public Mono<List<Map<String, Object>>> generateRoadmap(@PathVariable("projet-id") Long projetId) {
+    public Mono<List<Map<String, Object>>> generateRoadmap(@PathVariable Long projetId) {
         Projet projet = projetRepository.findById(projetId).orElseThrow();
         List<String> taches = tacheRepository.findByProjetId(projetId)
                 .stream()
