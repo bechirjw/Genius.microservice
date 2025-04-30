@@ -4,11 +4,10 @@ import com.genius.forum.dto.CommunityWithPostsDTO;
 import com.genius.forum.dto.PostDTO;
 import com.genius.forum.model.*;
 import com.genius.forum.repository.*;
-import com.genius.forum.service.AIService;
-import com.genius.forum.service.CommunityService;
-import com.genius.forum.service.PostService;
-import com.genius.forum.service.UserService;
+import com.genius.forum.service.*;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +27,12 @@ public class CommunityController {
     private CommunityRepository communityRepository;
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private FavoriServiceImpl favoriService;
+
+
+
+
 
     @Autowired
     public CommunityController(AIService aiService, CommunityRepository communityRepository) {
@@ -52,13 +57,16 @@ public class CommunityController {
         return communityService.getAllCommunities();
     }
 
-    @PostMapping
-    public Community createCommunity(@RequestBody Community community) {
-        return communityService.createCommunity(community);
+    @PostMapping("/user/{userId}")
+    public Community createCommunity(@RequestBody Community community,@PathVariable Long userId) {
+        community.setUserId(userId);
+        return communityService.createCommunity(community,userId);
     }
 
     @PostMapping("/{id}/join")
     public void joinCommunity(@PathVariable Long id, @RequestParam Long userId) {
+
+
         User user = userService.getUserById(userId);
         communityService.joinCommunity(id, user);
     }
@@ -68,21 +76,31 @@ public class CommunityController {
         return postService.getPostsByCommunityId(id);
     }
 
-    @PostMapping("/{id}/post")
-    public Post createPost(@PathVariable Long id, @RequestBody PostDTO postDTO) {
+    /*@PostMapping("/{id}/post/{userId}")
+    public Post createPost(@PathVariable Long id, @RequestBody PostDTO postDTO,@PathVariable Long userId) {
         // Assigner l'ID de la communauté et le userId
         postDTO.setCommunityId(id); // Utilisation de l'ID de la communauté depuis l'URL
+        postDTO.setUserId(userId); // Utilisation de l'ID de la communauté depuis l'URL
        // postDTO.setUserId(1L); // Par exemple, l'ID de l'utilisateur, tu peux le modifier en fonction de la session ou autre
 
         // Appeler la méthode createPost avec le DTO
-        return postService.createPost(postDTO);
+        return postService.createPost(postDTO,userId);
+    }*/
+    @PostMapping("/{id}/post/{userId}")
+    public Post createPost(@PathVariable Long id, @RequestBody PostDTO postDTO, @PathVariable Long userId) {
+        postDTO.setCommunityId(id);
+        postDTO.setUserId(userId);
+        return postService.createPost(postDTO, userId);
     }
 
     @DeleteMapping("/posts/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {
-        postService.deletePost(id);
+        postService.deletePost(id); // Appelle le service pour supprimer le post et envoyer l'email
+
+
         return ResponseEntity.noContent().build(); // 204 No Content
     }
+
 
 
 
@@ -129,9 +147,58 @@ public class CommunityController {
         List<Post> reportedPosts = postRepository.findByIsReportedTrue(); // Récupère tous les posts signalés
         return ResponseEntity.ok(reportedPosts);
     }
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Community>> getCommunitiesByUser(@PathVariable Long userId) {
+        // Appel du service pour récupérer les communautés de l'utilisateur
+        List<Community> communities = communityService.getCommunitiesByUser(userId);
+        return ResponseEntity.ok(communities);
+    }
 
+    // ➕ Ajouter une communauté aux favoris
+    @PostMapping("/favoris/add")
+    public ResponseEntity<Favori> addFavori(@RequestParam Long userId, @RequestParam Long communityId) {
+        Favori favori = favoriService.addFavori(userId, communityId);
+        return ResponseEntity.ok(favori);
+    }
 
+    // 📥 Récupérer les communautés favorites d'un utilisateur
+    @GetMapping("/favoris/user/{userId}")
+    public ResponseEntity<List<Community>> getFavorisByUser(@PathVariable Long userId) {
+        List<Favori> favoris = favoriService.getFavorisByUserId(userId);
+        // Extraire uniquement les communautés
+        List<Community> communities = favoris.stream()
+                .map(Favori::getCommunity)
+                .toList();
+        return ResponseEntity.ok(communities);
+    }
 
+    @PostMapping("/{postId}/upvote")
+    public ResponseEntity<Void> upvote(@PathVariable Long postId, @RequestParam Long userId) {
+        postService.vote(postId, userId, Vote.VoteType.UPVOTE);
+        return ResponseEntity.ok().build();
+    }
 
+    @PostMapping("/{postId}/downvote")
+    public ResponseEntity<Void> downvote(@PathVariable Long postId, @RequestParam Long userId) {
+        postService.vote(postId, userId, Vote.VoteType.DOWNVOTE);
+        return ResponseEntity.ok().build();
+    }
 
+    @GetMapping("/{postId}/upvotes")
+    public int getUpvotes(@PathVariable Long postId) {
+        return postService.getUpvotes(postId);
+    }
+
+    @GetMapping("/{postId}/downvotes")
+    public int getDownvotes(@PathVariable Long postId) {
+        return postService.getDownvotes(postId);
+    }
 }
+
+
+
+
+
+
+
+

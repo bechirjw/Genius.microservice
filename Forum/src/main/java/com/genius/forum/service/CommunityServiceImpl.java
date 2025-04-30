@@ -21,6 +21,8 @@ public class CommunityServiceImpl implements CommunityService {
     @Autowired
     private CommunityRepository communityRepository;
 
+
+
     @Autowired
     private MembershipRepository membershipRepository;
 
@@ -33,7 +35,7 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public Community createCommunity(Community community) {
+    public Community createCommunity(Community community,Long userId) {
         return communityRepository.save(community);
     }
 
@@ -80,7 +82,8 @@ public class CommunityServiceImpl implements CommunityService {
                         "https://img.freepik.com/photos-gratuite/jeune-belle-fille-posant-dans-veste-cuir-noire-parc_1153-8104.jpg?semt=ais_hybrid&w=740",
                         post.getCreatedAt(),
                         post.isReported(),
-                        post.getUserId()
+                        post.getUserId(),
+                        post.getLikes()
 
 
                 ))
@@ -106,6 +109,10 @@ public class CommunityServiceImpl implements CommunityService {
         // Supprimer la communauté elle-même
         communityRepository.deleteById(communityId);
     }
+    public List<Community> getCommunitiesByUser(Long userId) {
+        return communityRepository.findByCreatedBy_Id(userId);
+    }
+
 }
 
 

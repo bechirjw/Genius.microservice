@@ -5,39 +5,49 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
-@Data
-@AllArgsConstructor
 public class Vote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public enum VoteType {
+        UPVOTE, DOWNVOTE
+    }
+
     @Enumerated(EnumType.STRING)
-    private VoteType voteType;
+    private VoteType type;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
+    private User user;
+
+    @ManyToOne
     private Post post;
 
-    public Vote() {
-    }
-
-    public Vote(VoteType voteType, Post post) {
-        this.voteType = voteType;
-        this.post = post;
-    }
+    // === GETTERS & SETTERS ===
 
     public Long getId() {
         return id;
     }
 
-    public VoteType getVoteType() {
-        return voteType;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setVoteType(VoteType voteType) {
-        this.voteType = voteType;
+    public VoteType getType() {
+        return type;
+    }
+
+    public void setType(VoteType type) {
+        this.type = type;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Post getPost() {
