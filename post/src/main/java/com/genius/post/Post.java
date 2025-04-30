@@ -20,6 +20,8 @@ public class Post {
     private Long id;
 
     private String title;
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String content;
     private Long userId;
 
@@ -29,70 +31,7 @@ public class Post {
     private String createdBy;
     private String imageUrl;
     private Long likes;
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public Long getId() {
-        return id;
-    }
 
-
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Long getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Long likes) {
-        this.likes = likes;
-    }
 
 
 }

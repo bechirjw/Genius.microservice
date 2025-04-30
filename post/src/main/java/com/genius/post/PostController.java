@@ -26,10 +26,6 @@ import java.util.List;
 public class PostController {
     @Autowired
     private PostService postService;
-    private static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
-    private static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
-    private static final String FROM_PHONE = System.getenv("TWILIO_FROM_PHONE");
-    private static final String TO_PHONE = System.getenv("TWILIO_TO_PHONE");
 
     private static final String UPLOAD_DIR = "post/uploads/";
 
@@ -53,8 +49,7 @@ public class PostController {
 
             @RequestParam("title") String title,
             @RequestParam("description") String description,
-            @RequestParam("image") MultipartFile image,
-            @RequestParam("createdBy") String createdBy) {
+            @RequestParam("image") MultipartFile image){
         try {
             String imageUrl = saveImage(image);
             Post post = new Post();
@@ -62,7 +57,7 @@ public class PostController {
             post.setContent(description);
             post.setImageUrl(imageUrl);
             post.setUserId(userId);
-            post.setCreatedBy(createdBy);
+
             return ResponseEntity.ok(postService.addPost(post,userId));
         } catch (IOException e) {
             e.printStackTrace();
@@ -93,7 +88,20 @@ public class PostController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePost(
+            @PathVariable Long id,
+            @RequestParam String title,
+            @RequestParam String firstName,
+            @RequestParam String email) {
 
+        Post post = postService.retrievePost(id);
+        if (post != null) {
+            postService.deletePost(id, title, firstName, email);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
     // Modifier un post existant
   /*  @PutMapping("/{id}/user/{userId}")
     public ResponseEntity<Post> updatePost(@PathVariable Long id, @PathVariable Long userId,@RequestBody Post post) {

@@ -21,7 +21,6 @@ public class NotificationController {
     public Notification sendNotification(@RequestBody Notification notification) {
         return notificationService.saveNotification(notification);
     }
-
     @GetMapping("/user/{userId}")
     public List<Notification> getNotifications(@PathVariable Long userId) {
         return notificationService.getNotificationsForUser(userId);

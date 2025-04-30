@@ -2,6 +2,7 @@ package com.genius.comment;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -12,11 +13,17 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Setter
+@Getter
 public class Comment {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long idComment;
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+
     private String description;
+
     private LocalDateTime CreatedAt = LocalDateTime.now();
     private String CreatedBy;
     private Long postId;
@@ -28,45 +35,7 @@ public class Comment {
     @JsonIgnore // Ignore the 'likedBy' set from being serialized into JSON
     private Set<Long> likedBy = new HashSet<>();  // Initialize here as well
 
-    public Long getIdComment() {
-        return idComment;
-    }
 
-    public String getCreatedBy() {
-        return CreatedBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        CreatedBy = createdBy;
-    }
-
-    public void setIdComment(Long idComment) {
-        this.idComment = idComment;
-    }
-
-    public Long getPostId() {
-        return postId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return CreatedAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        CreatedAt = createdAt;
-    }
 
     // Getter for likes to return the count
     public Long getLikes() {
@@ -85,11 +54,5 @@ public class Comment {
         }
     }
 
-    public void setPostId(Long postId) {
-        this.postId=postId;
-    }
 
-    public void setUserId(Long userId) {
-        this.userId=userId;
-    }
 }

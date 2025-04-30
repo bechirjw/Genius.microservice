@@ -18,7 +18,6 @@ public class NotificationService {
     public List<Notification> getNotificationsForUser(Long userId) {
         return notificationRepository.findByReceiverId(userId);
     }
-
     public void markAsSeen(Long notifId) {
         Notification notif = notificationRepository.findById(notifId)
                 .orElseThrow(() -> new RuntimeException("Notification not found"));

@@ -27,4 +27,5 @@ public class Notification {
 
     private String type; // ex: "NEW_COLLABORATION"
     private LocalDateTime timestamp = LocalDateTime.now();
+
 }

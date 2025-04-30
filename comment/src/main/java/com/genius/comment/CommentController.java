@@ -80,4 +80,9 @@ public class CommentController {
         commentService.likeComment(id, userId);
         return ResponseEntity.ok().build();
     }
+    @DeleteMapping("/post/{postId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCommentsByPostId(@PathVariable Long postId) {
+        commentService.deleteCommentsByPostId(postId);
+    }
 }
