@@ -57,10 +57,7 @@ public class AuthentificationService {
 
         var claims = new HashMap<String, Object>();
         claims.put("id", user.getIdUser());
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/BlogsAfterIntegration
         claims.put("fullName", user.fullName());
         claims.put("role", user.getRoles().name());
 
