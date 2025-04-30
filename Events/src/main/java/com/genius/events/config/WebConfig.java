@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Dossier d'uploads situé à la racine du projet
+        // 📂 Cherche le dossier "uploads" à la racine du projet Genius.microservice
         Path uploadDir = Paths.get("uploads");
         String uploadPath = uploadDir.toFile().getAbsolutePath();
 
@@ -21,6 +21,4 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:///" + uploadPath + "/");
     }
-
-
 }

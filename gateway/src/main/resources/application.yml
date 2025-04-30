@@ -68,7 +68,7 @@ spring:
         - id: Events-service
           uri: lb://Events
           predicates:
-            - Path=/**
+            - Path=/participations/**, /liste-attente/**, /evenements/**, /uploads/**
           filters:
             - StripPrefix=0
 

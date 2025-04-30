@@ -1,53 +1,27 @@
 package com.genius.events.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UserDTO {
     private Long id;
     private String name;
     private String email;
     private String profilePictureUrl;
+    private String prenom;
 
     // Constructeurs
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String name, String email, String profilePictureUrl) {
+    public UserDTO(Long id, String name, String email, String profilePictureUrl,String prenom) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.profilePictureUrl = profilePictureUrl;
+        this.prenom = prenom;
     }
 
-    // Getters et Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getProfilePictureUrl() {
-        return profilePictureUrl;
-    }
-
-    public void setProfilePictureUrl(String profilePictureUrl) {
-        this.profilePictureUrl = profilePictureUrl;
-    }
 }
-

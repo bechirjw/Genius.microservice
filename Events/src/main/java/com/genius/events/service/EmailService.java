@@ -13,15 +13,16 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
-    public void sendQrCodeEmail(String to, String subject, String content, byte[] qrCode) throws Exception {
+
+    public void sendEmailWithQRCode(String toEmail, byte[] qrCode, String subject, String body) throws Exception {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        helper.setTo(to);
+        helper.setTo(toEmail);
         helper.setSubject(subject);
-        helper.setText(content);
+        helper.setText(body);
 
-        helper.addAttachment("QRCode.png", new ByteArrayResource(qrCode));
+        helper.addAttachment("qrcode.png", new ByteArrayResource(qrCode));
 
         mailSender.send(message);
     }

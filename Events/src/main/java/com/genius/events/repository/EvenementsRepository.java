@@ -17,6 +17,8 @@ public interface EvenementsRepository extends JpaRepository<Evenements,Long >{
     @Query("SELECT e FROM Evenements e LEFT JOIN FETCH e.participations WHERE e.id = :id")
     Optional<Evenements> findByIdWithParticipations(@Param("id") Long id);
 
+    @Query("SELECT e FROM Evenements e WHERE e.utilisateurId = :utilisateurId")
+    List<Evenements> findByUtilisateurId(@Param("utilisateurId") Long utilisateurId);
 
     List<Evenements> findByStatut(StatutEvenement statut);
 
