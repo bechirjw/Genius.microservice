@@ -1,0 +1,33 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: stage-service
+  config:
+    import: optional:configserver:http://localhost:8000
+  datasource:
+    url: jdbc:mysql://localhost:3306/stage?createDatabaseIfNotExist=true
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+zipkin:
+  base-url: http://localhost:9411
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG

@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  stage-service:
+    build: ./stage-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/stage_db?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
+    depends_on:
+      - discovery
+      - mysql
