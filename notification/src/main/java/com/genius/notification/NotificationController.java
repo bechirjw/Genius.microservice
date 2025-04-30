@@ -23,15 +23,15 @@ public class NotificationController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<Notification> getNotifications(@PathVariable Long userId) {
+    public List<Notification> getNotifications(@PathVariable("userId") Long userId) {
         return notificationService.getNotificationsForUser(userId);
     }
 
     @PutMapping("/seen/{notifId}")
-    public void markAsSeen(@PathVariable Long notifId) {
-
+    public void markAsSeen(@PathVariable("notifId") Long notifId) {
         notificationService.markAsSeen(notifId);
     }
+
 
 
 }
