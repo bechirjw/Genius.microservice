@@ -53,7 +53,7 @@ public class AuthentificationService {
                 .build();
 
         userRepository.save(user);
-      //  sendValidationEmail(user);
+        sendValidationEmail(user);
 
         var claims = new HashMap<String, Object>();
         claims.put("id", user.getIdUser());

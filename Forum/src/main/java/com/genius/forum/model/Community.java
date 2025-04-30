@@ -16,7 +16,8 @@ public class Community {
     private String description;
     @Column(length = 1000)
     private String imageUrl;
-
+private Long userId;
     @ManyToOne
+
     private User createdBy;
 }

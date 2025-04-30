@@ -12,6 +12,11 @@ public class PostDTO {
     private String userImage; // 👈 Nouveau
     private LocalDateTime createdAt;
     private String videoUrl; // ✅ Ajouter ce champ
+    private boolean isReported = false;  // Nouveau champ pour signaler un post
+    private Long userId;
+    private Integer likes;
+
+
 
 
 
@@ -20,7 +25,7 @@ public class PostDTO {
     // Constructeurs, getters et setters
 
 
-    public PostDTO(Long id, Long communityId, String content, String imageUrl, String videoUrl, String userName, String userImage, LocalDateTime createdAt) {
+    public PostDTO(Long id, Long communityId, String content, String imageUrl, String videoUrl, String userName, String userImage, LocalDateTime createdAt, boolean isReported, Long userId, Integer likes) {
         this.id = id;
 
         this.communityId = communityId;
@@ -30,6 +35,10 @@ public class PostDTO {
         this.userName = userName;
         this.userImage = userImage;
         this.createdAt = createdAt;
+        this.isReported = isReported;
+        this.userId = userId;
+        this.likes= likes;
+
     }
     public Long getId() {
         return id;
@@ -96,6 +105,30 @@ public class PostDTO {
 
     public void setUserImage(String userImage) {
         this.userImage = userImage;
+    }
+
+    public Boolean getIsReported() {
+        return isReported;
+    }
+
+    public void setIsReported(Boolean isReported) {
+        this.isReported = isReported;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
     }
 
 }
