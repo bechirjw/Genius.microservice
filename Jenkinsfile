@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/bechirjw/Genius.microservice.git'
+                git branch: 'master', url: 'https://github.com/bechirjw/Genius.microservice.git'
             }
         }
 
