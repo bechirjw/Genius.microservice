@@ -27,19 +27,34 @@ pipeline {
             }
         }
 
-        stage('Build Java Project') {
+        stage('Build and Package Microservices') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                script {
+                    def services = ["config-server", "discovery", "gateway"] // ← adapte selon ton repo
+
+                    for (svc in services) {
+                        echo "Building ${svc}..."
+                        dir("${svc}") {
+                            sh 'mvn clean package -DskipTests'
+                        }
+                    }
+                }
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Docker Images') {
             steps {
                 script {
-                    sh """
-                    docker build -t ${DOCKERHUB_REPO}:${IMAGE_TAG} .
-                    docker tag ${DOCKERHUB_REPO}:${IMAGE_TAG} ${DOCKERHUB_REPO}:latest
-                    """
+                    def services = ["config-server", "discovery", "gateway"] 
+                    for (svc in services) {
+                        echo "Building Docker image for ${svc}..."
+                        dir("${svc}") {
+                            sh """
+                            docker build -t ${DOCKERHUB_REPO}-${svc}:${IMAGE_TAG} .
+                            docker tag ${DOCKERHUB_REPO}-${svc}:${IMAGE_TAG} ${DOCKERHUB_REPO}-${svc}:latest
+                            """
+                        }
+                    }
                 }
             }
         }
@@ -47,15 +62,20 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    sh """
-                    echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
-                    docker push ${DOCKERHUB_REPO}:${IMAGE_TAG}
-                    docker push ${DOCKERHUB_REPO}:latest
-                    """
+                    sh 'echo "${DOCKERHUB_PASS}" | docker login -u "${DOCKERHUB_USER}" --password-stdin'
+                    def services = ["config-server", "discovery", "gateway"] 
+                    for (svc in services) {
+                        echo "Pushing ${svc} to DockerHub..."
+                        sh """
+                        docker push ${DOCKERHUB_REPO}-${svc}:${IMAGE_TAG}
+                        docker push ${DOCKERHUB_REPO}-${svc}:latest
+                        """
+                    }
                 }
             }
         }
     }
+        
 
     post {
         success {
